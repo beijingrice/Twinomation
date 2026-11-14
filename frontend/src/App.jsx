@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Bell, Check, CircleCheck, Pause, Play, RefreshCw, Send, ShieldCheck, Smartphone, X } from 'lucide-react';
 import { api, useLive } from './api';
 import { Crumbs, Live, Mark, Modal, SearchField, timeOf } from './components';
-import { MODE, REGIONS, STATION_CODES, titleTopic, todoOf, waitingOn } from './constants';
+import { MODE, REGIONS, WORKSPACE_PATH, titleTopic, todoOf, waitingOn } from './constants';
 import { CreateForm, NoteForm, ReadinessForm, RejectForm, ScheduleForm } from './forms';
 import { CasePage, CasesPage, OverviewPage, RegionPage, ReviewPage, StationPage } from './pages';
 
 const DEFAULT_PAGE = MODE === 'outport' ? 'station' : MODE === 'cs' ? 'review' : 'overview';
-const HOME = MODE === 'outport' ? '/outport' : MODE === 'cs' ? '/review' : '/';
+const ROLE_NAME = { occ: 'Operations control', outport: 'Outport station', cs: 'Customer service' };
 
 /* Navigation lives in the query string so reload and back/forward work. In the outport demo `station` is the simulated identity. */
 function parseNav() {
@@ -35,7 +35,7 @@ const MODAL_TITLES = { create: 'Open a coordination case', readiness: 'Update gr
 
 export default function App() {
   const [token, setToken] = useState('');
-  const [station, setStation] = useState(() => new URLSearchParams(window.location.search).get('station') || 'KIX');
+  const [station] = useState(() => new URLSearchParams(window.location.search).get('station') || 'KIX');
   const [stations, setStations] = useState([]);
   const [cases, setCases] = useState([]);
   const [updates, setUpdates] = useState([]);
@@ -98,7 +98,6 @@ export default function App() {
   const live = useLive(token ? '/stream' : null, token, refresh);
 
   const go = next => { setNav(next); window.history.pushState(null, '', navUrl(next, station)); window.scrollTo({ top: 0, behavior: 'instant' }); };
-  const switchStation = code => { setDetail(null); setStation(code); const next = { page: 'station' }; setNav(next); window.history.replaceState(null, '', navUrl(next, code)); };
   const perform = async (path, options, success) => {
     if (mutation.current) return null;
     mutation.current = true; setBusy(true);
@@ -148,20 +147,15 @@ export default function App() {
   const publishing = MODE === 'occ'
     ? <button className={'publish-chip ' + (switchState.active ? 'paused' : 'on')} onClick={askSwitch} title="Click to change">{switchState.active ? <Pause size={12}/> : <Send size={12}/>}{switchState.active ? 'Publishing paused' : 'Publishing on'}</button>
     : <span className={'publish-chip ' + (switchState.active ? 'paused' : 'on')}>{switchState.active ? 'Publishing paused' : 'Publishing on'}</span>;
-  const roleHref = { occ: '/', outport: `/outport?station=${station}`, cs: '/review' };
 
   return <div className="app">
     <aside className="sidebar">
       <div className="side-top">
-        <a className="brand" href={HOME}><Mark small/><span>Twinomation</span></a>
-        <label className="picker"><span>View as</span>
-          <select value={MODE} onChange={e => { window.location.href = roleHref[e.target.value]; }}>
-            <option value="occ">Operations control</option>
-            <option value="outport">Outport station</option>
-            <option value="cs">Customer service</option>
-          </select>
-        </label>
-        {MODE === 'outport' && <label className="picker"><span>Station</span><select value={station} onChange={e => switchStation(e.target.value)}>{STATION_CODES.map(s => <option key={s}>{s}</option>)}</select></label>}
+        <a className="brand" href="/" title="Back to all workspaces"><Mark small/><span>Twinomation</span></a>
+        <div className="role-card">
+          <span><small>Workspace</small><strong>{ROLE_NAME[MODE]}{MODE === 'outport' ? ` · ${station}` : ''}</strong></span>
+          <a href="/">Switch</a>
+        </div>
         {MODE !== 'outport' && <nav className="side-nav" aria-label="Workspace">
           <button className={nav.page === 'overview' ? 'active' : ''} onClick={() => go({ page: 'overview' })}>Overview<span className={todoOf(cases) ? 'warn' : ''}>{todoOf(cases)}</span></button>
           <button className={nav.page === 'review' ? 'active' : ''} onClick={() => go({ page: 'review' })}>Passenger updates<span className={updates.length ? 'warn' : ''}>{updates.length}</span></button>

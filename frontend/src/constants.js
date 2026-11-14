@@ -15,10 +15,21 @@ export const REGIONS = [
   { code: 'KR', name: 'South Korea', local: '대한민국' }
 ];
 
-export const STATION_CODES = ['KIX', 'NRT', 'PVG', 'PEK', 'TPE', 'KHH', 'ICN'];
+/** Demo outports (mirrors backend/db.py STATIONS) — used where no session exists yet, e.g. the workspace index. */
+export const STATIONS = [
+  { code: 'KIX', name: 'Osaka', region: 'JP' }, { code: 'NRT', name: 'Tokyo', region: 'JP' },
+  { code: 'PVG', name: 'Shanghai', region: 'CN' }, { code: 'PEK', name: 'Beijing', region: 'CN' },
+  { code: 'TPE', name: 'Taipei', region: 'TW' }, { code: 'KHH', name: 'Kaohsiung', region: 'TW' },
+  { code: 'ICN', name: 'Seoul', region: 'KR' }
+];
 
-export const MODE = window.location.pathname.startsWith('/outport') ? 'outport'
-  : window.location.pathname.startsWith('/review') ? 'cs' : 'occ';
+/** Which workspace this page is: `/` is the workspace index; each role has its own entry path. */
+const PATH = window.location.pathname;
+export const MODE = PATH.startsWith('/passenger') ? 'passenger'
+  : PATH.startsWith('/occ') ? 'occ'
+  : PATH.startsWith('/outport') ? 'outport'
+  : PATH.startsWith('/review') ? 'cs' : 'index';
+export const WORKSPACE_PATH = { occ: '/occ', outport: '/outport', cs: '/review' };
 
 export const countReady = c => Object.values(c.conditions).filter(x => x.status === 'CONFIRMED').length;
 

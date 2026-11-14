@@ -56,10 +56,12 @@ svg { flex-shrink: 0; }
 .brand-mark svg { width: 23px; height: 23px; }
 .brand-mark.small { width: 24px; height: 24px; border-radius: 6px; }
 .brand-mark.small svg { width: 18px; height: 18px; }
-.picker { display: grid; gap: 3px; padding: 7px 10px 8px; border-radius: 12px; background: rgba(255,255,255,.07); }
-.picker span { font-size: 11px; font-weight: 600; color: var(--fg-3); }
-.picker select { width: 100%; margin-left: -3px; border: 0; background: transparent; font-size: 14px; font-weight: 600; color: var(--fg); cursor: pointer; }
-.picker select option { background: #2a2144; }
+.role-card { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px 9px; border-radius: 12px; background: rgba(255,255,255,.07); }
+.role-card > span { display: grid; min-width: 0; }
+.role-card small { font-size: 11px; font-weight: 600; color: var(--fg-3); }
+.role-card strong { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.role-card a { flex-shrink: 0; font-size: 12px; font-weight: 600; color: var(--brand-tint); }
+.role-card a:hover { color: #fff; }
 .side-nav { display: grid; gap: 2px; }
 .side-nav button { display: flex; align-items: center; justify-content: space-between; height: 36px; padding: 0 10px; border-radius: 10px; font-size: 14px; font-weight: 550; color: var(--fg-2); }
 .side-nav button:hover { background: rgba(255,255,255,.07); color: var(--fg); }
@@ -292,12 +294,29 @@ form select option { background: #2a2144; }
 .passenger .hero-value { font-size: 72px; letter-spacing: -2px; }
 .passenger .page-bar { max-width: none; }
 
+/* ---------- Workspace index ---------- */
+.index-main { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+.index .hero { padding-top: 48px; }
+.index .hero h1 { font-size: 64px; font-weight: 250; letter-spacing: -2px; }
+.index-lead { margin-top: 2px; font-size: 20px; font-weight: 500; color: var(--fg-2); }
+.index-grid { grid-auto-rows: auto; }
+.entry h2 { font-size: 24px; font-weight: 600; }
+.entry p { font-size: 14px; color: var(--fg-2); }
+.entry-go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 8px; font-size: 14px; font-weight: 600; color: var(--brand-tint); }
+a.entry:hover .entry-go { color: #fff; }
+.station-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.station-chip { display: grid; padding: 7px 10px; border-radius: 10px; background: rgba(255,255,255,.07); }
+.station-chip:hover { background: var(--brand); }
+.station-chip b { font-size: 13px; font-weight: 700; }
+.station-chip span { font-size: 12px; color: var(--fg-2); }
+.index-note { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 18px; font-size: 13px; color: var(--fg-3); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--glass-line); }
   .side-top { grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .brand, .side-nav { grid-column: 1 / -1; }
+  .brand, .role-card, .side-nav { grid-column: 1 / -1; }
   .side-nav { grid-template-columns: repeat(3, 1fr); }
   .side-nav button { justify-content: center; gap: 6px; padding: 0 6px; font-size: 13px; }
   .side-list { display: flex; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }

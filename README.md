@@ -15,7 +15,7 @@ npm ci
 ./scripts/run.sh
 ```
 
-Open [OCC](http://127.0.0.1:8000), [Outport](http://127.0.0.1:8000/outport), or [Customer service](http://127.0.0.1:8000/review). Use the **Passenger preview** action inside an OCC case to issue an eight-hour private link. A new link revokes the previous link for that case.
+Open [the workspace index](http://127.0.0.1:8000) and choose a workspace: [OCC](http://127.0.0.1:8000/occ), an outport station (for example [KIX](http://127.0.0.1:8000/outport?station=KIX)), or [Customer service](http://127.0.0.1:8000/review). The Twinomation logo in each workspace returns to the index. Use the **Passenger preview** action inside an OCC case to issue an eight-hour private link. A new link revokes the previous link for that case.
 
 For development with hot reload, run `./scripts/dev.sh`, then open [the Vite frontend](http://127.0.0.1:5173). The backend remains on port 8000; Vite proxies `/api` requests.
 
