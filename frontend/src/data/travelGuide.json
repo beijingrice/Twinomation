@@ -1,0 +1,1929 @@
+{
+  "source": {
+    "file": "HK_Express_Destinations_Travel_Guide.md",
+    "date": "2026-11-15",
+    "sha256": "cbfe3ad1cb4985fe0348125c345d9ae97200800a7d7261753cded1273522ab4a"
+  },
+  "destinations": [
+    {
+      "id": "beijing",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "北京",
+        "en": "Beijing"
+      },
+      "airports": [
+        "PKX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "古都历史、皇家建筑与胡同文化相结合，是适合文化探索和城市漫游的目的地。",
+          "attractions": [
+            "故宫博物院（紫禁城）：明清皇家宫殿群，建议预留半天以上",
+            "天坛公园：以祈年殿等祭天建筑闻名",
+            "八达岭或慕田峪长城：经典长城一日游",
+            "景山公园：俯瞰北京中轴线及故宫"
+          ],
+          "food": "北京烤鸭、炸酱面、豆汁（口味独特）。",
+          "tip": "大兴机场 PKX 位于北京南部，赴中心城区需另计地面交通时间。",
+          "tags": [
+            "古迹",
+            "城市",
+            "博物馆"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "Historic palaces, hutong lanes and museums make Beijing a rewarding cultural city break.",
+          "attractions": [
+            "Palace Museum: the Forbidden City palace complex; allow at least half a day",
+            "Temple of Heaven: ceremonial halls and parkland",
+            "Badaling or Mutianyu Great Wall: a day trip beyond the city",
+            "Jingshan Park: views over the historic central axis"
+          ],
+          "food": "Peking duck, zhajiang noodles and douzhi.",
+          "tip": "PKX is Beijing Daxing Airport, south of the city. Allow additional ground-transfer time.",
+          "tags": [
+            "Heritage",
+            "City",
+            "Museums"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "天安门与故宫入口",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Tiananmen_Gate.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Tiananmen_Gate.jpg",
+        "credit": "Rabs003"
+      }
+    },
+    {
+      "id": "changzhou",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "常州",
+        "en": "Changzhou"
+      },
+      "airports": [
+        "CZX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "江南历史文化与大型主题乐园兼备，适合短途亲子与寺庙古迹旅行。",
+          "attractions": [
+            "天宁寺与天宁宝塔：常州代表性寺庙景观",
+            "中华恐龙园：大型主题乐园",
+            "淹城春秋乐园／春秋淹城：春秋文化主题景区"
+          ],
+          "food": "常州大麻糕、银丝面。",
+          "tip": "景点分布在城市不同片区，主题乐园适合单独安排一整天。",
+          "tags": [
+            "文化",
+            "亲子",
+            "主题乐园"
+          ],
+          "stay": "1–2 天"
+        },
+        "en": {
+          "description": "Jiangnan heritage meets large theme parks, with options for families and temple visits.",
+          "attractions": [
+            "Tianning Temple and Pagoda: a landmark temple complex",
+            "China Dinosaur Park: a major theme park",
+            "Yancheng Spring and Autumn Park: a historical theme attraction"
+          ],
+          "food": "Sesame cakes and silver-thread noodles.",
+          "tip": "Attractions are spread across the city. Allow a full day for a theme park.",
+          "tags": [
+            "Culture",
+            "Family",
+            "Theme parks"
+          ],
+          "stay": "1–2 days"
+        }
+      },
+      "photo": {
+        "label": "天宁寺与天宁宝塔",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Tianning_Temple_in_Changzhou.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Tianning_Temple_in_Changzhou.jpg",
+        "credit": "（见文件来源页）"
+      }
+    },
+    {
+      "id": "hefei",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "合肥",
+        "en": "Hefei"
+      },
+      "airports": [
+        "HFE"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "安徽省会，适合将历史名人文化、城市公园和周边古镇组合成轻松的短途旅行。",
+          "attractions": [
+            "包公园：纪念包拯的代表性景区",
+            "安徽博物院：了解安徽历史及文物",
+            "三河古镇：位于合肥市域的水乡古镇，需安排往返交通"
+          ],
+          "food": "庐州烤鸭、徽菜臭鳜鱼。",
+          "tip": "三河古镇并非市中心景点，建议独立规划半日到一日。",
+          "tags": [
+            "文化",
+            "古镇",
+            "博物馆"
+          ],
+          "stay": "1–2 天"
+        },
+        "en": {
+          "description": "Explore Anhui history, urban parks and nearby old towns at a relaxed pace.",
+          "attractions": [
+            "Baogong Park: sites commemorating Bao Zheng",
+            "Anhui Museum: regional history and collections",
+            "Sanhe Ancient Town: a waterside town requiring a separate transfer"
+          ],
+          "food": "Luzhou roast duck and Anhui-style fermented mandarin fish.",
+          "tip": "Sanhe is outside central Hefei; plan a separate half-day or full-day visit.",
+          "tags": [
+            "Culture",
+            "Old towns",
+            "Museums"
+          ],
+          "stay": "1–2 days"
+        }
+      },
+      "photo": {
+        "label": "包公园",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Baogong_Park_at_He_Fei.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Baogong_Park_at_He_Fei.jpg",
+        "credit": "钉钉"
+      }
+    },
+    {
+      "id": "ningbo",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "宁波",
+        "en": "Ningbo"
+      },
+      "airports": [
+        "NGB"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "历史悠久的港口城市，有藏书楼、老外滩、湖光山色与海鲜美食。",
+          "attractions": [
+            "天一阁博物院：著名古代私人藏书楼",
+            "宁波老外滩：近代港口历史街区",
+            "东钱湖：湖景、骑行与休闲游览",
+            "天一广场：市中心商业与夜间步行区"
+          ],
+          "food": "宁波汤圆、海鲜、红膏炝蟹。",
+          "tip": "东钱湖离市中心有一定距离，可作为半日游。",
+          "tags": [
+            "历史",
+            "湖泊",
+            "美食"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A historic port with old libraries, waterfront streets, lakes and seafood.",
+          "attractions": [
+            "Tianyi Pavilion Museum: a historic private library",
+            "Ningbo Old Bund: a historic port district",
+            "Dongqian Lake: lakeside cycling and leisure",
+            "Tianyi Square: central shopping and evening walks"
+          ],
+          "food": "Ningbo rice balls, seafood and marinated crab.",
+          "tip": "Dongqian Lake is outside the centre and suits a half-day excursion.",
+          "tags": [
+            "History",
+            "Lakes",
+            "Food"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "天一阁",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Tianyi_Pavilion%2C_Ningbo.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Tianyi_Pavilion%2C_Ningbo.jpg",
+        "credit": "Mx. Granger"
+      }
+    },
+    {
+      "id": "sanya",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "三亚",
+        "en": "Sanya"
+      },
+      "airports": [
+        "SYX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "海南岛南端的热带海滨城市，主打海湾度假、浮潜与海岛休闲。",
+          "attractions": [
+            "亚龙湾：海滩与度假酒店集中",
+            "蜈支洲岛：海岛风景及水上活动",
+            "天涯海角：海岸奇石景观",
+            "南山文化旅游区：海滨宗教文化景区"
+          ],
+          "food": "海南鸡饭、椰子鸡、海鲜。",
+          "tip": "海滩与海岛项目受风浪影响，水上项目须以当日开放及安全公告为准。",
+          "tags": [
+            "海滩",
+            "海岛",
+            "度假"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "A tropical Hainan escape for beaches, bays and island scenery.",
+          "attractions": [
+            "Yalong Bay: beaches and resort hotels",
+            "Wuzhizhou Island: island views and water activities",
+            "Tianya Haijiao: coastal rock formations",
+            "Nanshan Cultural Tourism Zone: coastal religious landmarks"
+          ],
+          "food": "Hainanese chicken rice, coconut chicken and seafood.",
+          "tip": "Sea conditions affect beaches and boat trips. Check same-day activity and safety notices.",
+          "tags": [
+            "Beaches",
+            "Islands",
+            "Resorts"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "三亚湾海滩",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Sanya_bay_sea_beach.JPG",
+        "source": "https://commons.wikimedia.org/wiki/File:Sanya_bay_sea_beach.JPG",
+        "credit": "Shizhao"
+      }
+    },
+    {
+      "id": "wuxi",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "无锡",
+        "en": "Wuxi"
+      },
+      "airports": [
+        "WUX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "太湖沿岸的江南城市，以湖景园林、寺庙与江南古街见长。",
+          "attractions": [
+            "太湖鼋头渚：樱花季与太湖湖景著名",
+            "灵山大佛：巨型佛像和佛教文化景区",
+            "南长街与清名桥：运河历史街区",
+            "蠡园：传统江南园林"
+          ],
+          "food": "无锡小笼包、酱排骨。",
+          "tip": "鼋头渚与灵山景区相隔较远，不宜视作步行可达。",
+          "tags": [
+            "湖泊",
+            "园林",
+            "古街"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "Discover Taihu Lake, Jiangnan gardens, temples and canal-side streets.",
+          "attractions": [
+            "Yuantouzhu: Taihu scenery and seasonal cherry blossom",
+            "Lingshan Grand Buddha: a large Buddhist cultural site",
+            "Nanchang Street and Qingming Bridge: a canal heritage district",
+            "Li Garden: traditional Jiangnan landscaping"
+          ],
+          "food": "Wuxi soup dumplings and braised pork ribs.",
+          "tip": "Yuantouzhu and Lingshan are far apart; do not plan to walk between them.",
+          "tags": [
+            "Lakes",
+            "Gardens",
+            "Old streets"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "灵山大佛",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Grand_Buddha_at_Ling_Shan%2C_China.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Grand_Buddha_at_Ling_Shan%2C_China.jpg",
+        "credit": "gdczjkk"
+      }
+    },
+    {
+      "id": "yiwu",
+      "region": "EA",
+      "market": "CN",
+      "name": {
+        "zh": "义乌",
+        "en": "Yiwu"
+      },
+      "airports": [
+        "YIW"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "以国际商贸闻名，也有古镇、地方饮食与浙中城市文化。",
+          "attractions": [
+            "义乌国际商贸城：规模庞大的商贸市场，偏商业参观",
+            "佛堂古镇：传统街巷与古建筑",
+            "鸡鸣阁及鸡鸣山公园：城市景观与休闲步道"
+          ],
+          "food": "义乌红糖麻花、东河肉饼。",
+          "tip": "国际商贸城以贸易为主要用途，不等同于纯旅游购物中心；参观前确认馆区和营业安排。",
+          "tags": [
+            "城市",
+            "市场",
+            "古镇"
+          ],
+          "stay": "1–2 天"
+        },
+        "en": {
+          "description": "Known for international trade, Yiwu also offers old streets and local food.",
+          "attractions": [
+            "Yiwu International Trade City: a large wholesale market",
+            "Fotang Ancient Town: traditional lanes and architecture",
+            "Jiming Pavilion and Jiming Mountain Park: city views and walking routes"
+          ],
+          "food": "Brown-sugar twists and Donghe meat pancakes.",
+          "tip": "Trade City is primarily a working wholesale market. Check the halls and opening arrangements before visiting.",
+          "tags": [
+            "City",
+            "Markets",
+            "Old towns"
+          ],
+          "stay": "1–2 days"
+        }
+      },
+      "photo": {
+        "label": "义乌国际商贸城周边城市景观",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/201706_Overview_of_Yiwu_International_Trading_Town.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:201706_Overview_of_Yiwu_International_Trading_Town.jpg",
+        "credit": "MNXANL"
+      }
+    },
+    {
+      "id": "taipei",
+      "region": "EA",
+      "market": "TW",
+      "name": {
+        "zh": "台北",
+        "en": "Taipei"
+      },
+      "airports": [
+        "TPE"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "文化展馆、现代城市景观、夜市与山城近郊旅行选择丰富。",
+          "attractions": [
+            "台北 101：地标摩天楼与观景台",
+            "国立故宫博物院：收藏丰富的中华文物",
+            "龙山寺：传统庙宇与城市街区",
+            "士林夜市：著名小吃夜市"
+          ],
+          "food": "牛肉面、卤肉饭、珍珠奶茶。",
+          "tip": "TPE 为桃园国际机场，与台北市中心之间需要安排机场交通。",
+          "tags": [
+            "地标",
+            "博物馆",
+            "夜市"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "Combine landmark views, cultural collections, temples and lively night markets.",
+          "attractions": [
+            "Taipei 101: landmark tower and observation decks",
+            "National Palace Museum: major Chinese art collections",
+            "Longshan Temple: traditional temple and neighbourhood",
+            "Shilin Night Market: a well-known food market"
+          ],
+          "food": "Beef noodles, braised pork rice and bubble tea.",
+          "tip": "TPE is Taoyuan International Airport; allow time for the journey to central Taipei.",
+          "tags": [
+            "Landmarks",
+            "Museums",
+            "Night markets"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "台北 101",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/%E5%8F%B0%E5%8C%97101.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:%E5%8F%B0%E5%8C%97101.jpg",
+        "credit": "Arear0073691"
+      }
+    },
+    {
+      "id": "taichung",
+      "region": "EA",
+      "market": "TW",
+      "name": {
+        "zh": "台中",
+        "en": "Taichung"
+      },
+      "airports": [
+        "RMQ"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "结合现代建筑、创意文化、夜市及中台湾自然风景。",
+          "attractions": [
+            "台中国家歌剧院：曲面建筑与文化空间",
+            "高美湿地：黄昏海岸景观和观鸟",
+            "逢甲夜市：特色小吃与商圈",
+            "日月潭：位于南投县，适合作为另行安排的一日游"
+          ],
+          "food": "太阳饼、大肠包小肠、珍珠奶茶。",
+          "tip": "高美湿地和日月潭均需额外交通时间；湿地步道开放与潮汐有关。",
+          "tags": [
+            "建筑",
+            "夜市",
+            "自然"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "Modern architecture, creative neighbourhoods, night markets and central Taiwan excursions.",
+          "attractions": [
+            "National Taichung Theater: sculptural architecture and performances",
+            "Gaomei Wetlands: coastal sunsets and birdwatching",
+            "Fengjia Night Market: food stalls and shopping",
+            "Sun Moon Lake: in Nantou County; plan a separate day trip"
+          ],
+          "food": "Sun cakes, sausage in sticky rice and bubble tea.",
+          "tip": "Gaomei and Sun Moon Lake require transfers. Wetland boardwalk access depends on tides and opening arrangements.",
+          "tags": [
+            "Architecture",
+            "Night markets",
+            "Nature"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "台中国家歌剧院",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/National_Taichung_Theater.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:National_Taichung_Theater.jpg",
+        "credit": "（见文件来源页）"
+      }
+    },
+    {
+      "id": "kaohsiung",
+      "region": "EA",
+      "market": "TW",
+      "name": {
+        "zh": "高雄",
+        "en": "Kaohsiung"
+      },
+      "airports": [
+        "KHH"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "海港城市，以艺术仓库、滨水空间、寺庙与骑行路线闻名。",
+          "attractions": [
+            "莲池潭龙虎塔：高雄标志性景观",
+            "驳二艺术特区：由港口仓库转型的文化空间",
+            "旗津：渡轮可达的海滨半岛",
+            "美丽岛站光之穹顶：著名公共艺术"
+          ],
+          "food": "鸭肉饭、海鲜、木瓜牛奶。",
+          "tip": "旗津需安排渡轮等交通，海边活动留意天气。",
+          "tags": [
+            "海港",
+            "艺术",
+            "庙宇"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A harbour city of art warehouses, waterfront spaces, temples and cycling routes.",
+          "attractions": [
+            "Dragon and Tiger Pagodas at Lotus Pond: landmark temple scenery",
+            "Pier-2 Art Center: converted harbour warehouses",
+            "Cijin: a seaside peninsula reached by ferry",
+            "Dome of Light at Formosa Boulevard Station: public art"
+          ],
+          "food": "Duck rice, seafood and papaya milk.",
+          "tip": "Allow ferry time for Cijin and check the weather before seaside activities.",
+          "tags": [
+            "Harbour",
+            "Art",
+            "Temples"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "莲池潭龙虎塔",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Kaohsiung_Taiwan_Dragon-and-Tiger-Pagodas-01.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Kaohsiung_Taiwan_Dragon-and-Tiger-Pagodas-01.jpg",
+        "credit": "CEphoto, Uwe Aranas"
+      }
+    },
+    {
+      "id": "tokyo",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "东京",
+        "en": "Tokyo"
+      },
+      "airports": [
+        "HND",
+        "NRT"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "现代街区、寺庙历史、美术馆与美食密集，适合首访日本。",
+          "attractions": [
+            "浅草寺与雷门：东京代表性传统寺庙街区",
+            "涩谷十字路口：东京现代都市景观",
+            "明治神宫：市中心的神宫与绿地",
+            "东京晴空塔：地标与城市观景"
+          ],
+          "food": "寿司、拉面、天妇罗。",
+          "tip": "羽田 HND 与成田 NRT 是不同机场，前往东京市区的时间、票价和交通方式不同。",
+          "tags": [
+            "都会",
+            "历史",
+            "购物"
+          ],
+          "stay": "4–6 天"
+        },
+        "en": {
+          "description": "A first-time Japan favourite, combining modern districts, temples, museums and food.",
+          "attractions": [
+            "Senso-ji and Kaminarimon: historic Asakusa",
+            "Shibuya Crossing: a city landmark",
+            "Meiji Jingu: a shrine set within central woodland",
+            "Tokyo Skytree: tower and observation decks"
+          ],
+          "food": "Sushi, ramen and tempura.",
+          "tip": "HND Haneda and NRT Narita are separate airports with different city-transfer times and options.",
+          "tags": [
+            "City",
+            "History",
+            "Shopping"
+          ],
+          "stay": "4–6 days"
+        }
+      },
+      "photo": {
+        "label": "浅草寺",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Asakusa_Senso-ji_2021-12_ac_%282%29.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Asakusa_Senso-ji_2021-12_ac_%282%29.jpg",
+        "credit": "Asturio Cantabrio"
+      }
+    },
+    {
+      "id": "osaka",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "大阪",
+        "en": "Osaka"
+      },
+      "airports": [
+        "KIX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "关西美食之都，夜间霓虹街景与娱乐设施丰富。",
+          "attractions": [
+            "道顿堀：著名商业街、美食与运河夜景",
+            "大阪城公园：历史建筑与四季景色",
+            "日本环球影城 USJ：主题乐园",
+            "黑门市场：食品市场及小吃"
+          ],
+          "food": "章鱼烧、大阪烧、串炸。",
+          "tip": "KIX 为关西国际机场，连接大阪市区及部分周边关西城市。",
+          "tags": [
+            "美食",
+            "城市",
+            "主题乐园"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A Kansai food capital with neon canal-side streets and major entertainment attractions.",
+          "attractions": [
+            "Dotonbori: food, shopping and canal-side nightlife",
+            "Osaka Castle Park: historic architecture and seasonal scenery",
+            "Universal Studios Japan: a major theme park",
+            "Kuromon Market: food stalls and snacks"
+          ],
+          "food": "Takoyaki, okonomiyaki and kushikatsu.",
+          "tip": "KIX is Kansai International Airport, serving Osaka and the wider Kansai region.",
+          "tags": [
+            "Food",
+            "City",
+            "Theme parks"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "道顿堀运河",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Osaka_Dotonbori_Canal.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Osaka_Dotonbori_Canal.jpg",
+        "credit": "32linesky"
+      }
+    },
+    {
+      "id": "nagoya",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "名古屋",
+        "en": "Nagoya"
+      },
+      "airports": [
+        "NGO"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "中部日本的交通枢纽，可结合历史名城、传统商圈和特色饮食。",
+          "attractions": [
+            "名古屋城：地标城郭（天守内部开放以官方信息为准）",
+            "热田神宫：历史悠久的神宫",
+            "大须商店街：购物、美食和次文化",
+            "吉卜力公园：位于近郊长久手市，通常需预订门票"
+          ],
+          "food": "鳗鱼饭三吃、味噌猪排、味噌煮乌冬。",
+          "tip": "NGO 为中部国际机场，坐落在常滑市，与名古屋市区并非同一地点。",
+          "tags": [
+            "城堡",
+            "购物",
+            "美食"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A central Japan transport hub for castles, shopping streets and distinctive local dishes.",
+          "attractions": [
+            "Nagoya Castle: check official notices for keep access",
+            "Atsuta Jingu: a historic shrine",
+            "Osu Shopping District: shops, food and pop culture",
+            "Ghibli Park: outside the city in Nagakute; reservations are usually needed"
+          ],
+          "food": "Hitsumabushi eel rice, miso pork cutlet and miso udon.",
+          "tip": "NGO Chubu Centrair Airport is in Tokoname, outside central Nagoya.",
+          "tags": [
+            "Castles",
+            "Shopping",
+            "Food"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "名古屋城",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nagoya_Castle.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Nagoya_Castle.jpg",
+        "credit": "（见文件来源页）"
+      }
+    },
+    {
+      "id": "fukuoka",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "福冈",
+        "en": "Fukuoka"
+      },
+      "airports": [
+        "FUK"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "适合美食与轻量旅行的九州门户城市，市区交通相对集中。",
+          "attractions": [
+            "大濠公园：湖面散步、庭园与市民休闲",
+            "太宰府天满宫：福冈近郊著名神社",
+            "福冈塔：海滨城市观景",
+            "博多运河城：商业与娱乐设施"
+          ],
+          "food": "博多豚骨拉面、牛肠锅、明太子。",
+          "tip": "太宰府属于近郊行程；市区本身适合步行与公共交通结合。",
+          "tags": [
+            "美食",
+            "公园",
+            "城市"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "An accessible Kyushu gateway for food, parks and a relaxed city stay.",
+          "attractions": [
+            "Ohori Park: lakeside walks and gardens",
+            "Dazaifu Tenmangu: a shrine outside central Fukuoka",
+            "Fukuoka Tower: coastal city views",
+            "Canal City Hakata: shopping and entertainment"
+          ],
+          "food": "Hakata tonkotsu ramen, motsunabe and mentaiko.",
+          "tip": "Dazaifu is an excursion beyond the centre. Combine walking and public transport for city visits.",
+          "tags": [
+            "Food",
+            "Parks",
+            "City"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "大濠公园",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Ohori_Park%2C_Fukuoka.JPG",
+        "source": "https://commons.wikimedia.org/wiki/File:Ohori_Park%2C_Fukuoka.JPG",
+        "credit": "Masgatotkaca"
+      }
+    },
+    {
+      "id": "hiroshima",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "广岛",
+        "en": "Hiroshima"
+      },
+      "airports": [
+        "HIJ"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "以和平纪念建筑和濑户内海景观著名，适合历史文化与岛屿观光结合。",
+          "attractions": [
+            "广岛和平纪念公园：战争历史纪念场所",
+            "原爆圆顶馆：世界文化遗产",
+            "宫岛严岛神社：海上鸟居与神社建筑",
+            "宫岛弥山：登山与濑户内海观景"
+          ],
+          "food": "广岛风御好烧、牡蛎。",
+          "tip": "HIJ 与广岛市区存在较长地面交通；宫岛需继续乘铁路及渡轮。",
+          "tags": [
+            "历史",
+            "文化遗产",
+            "岛屿"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "Explore peace memorials and cultural heritage alongside Seto Inland Sea island scenery.",
+          "attractions": [
+            "Hiroshima Peace Memorial Park: a place of remembrance",
+            "Atomic Bomb Dome: a World Heritage landmark",
+            "Itsukushima Shrine on Miyajima: a coastal shrine and torii",
+            "Mount Misen: hiking and island views"
+          ],
+          "food": "Hiroshima-style okonomiyaki and oysters.",
+          "tip": "HIJ is some distance from central Hiroshima; Miyajima requires further rail and ferry travel.",
+          "tags": [
+            "History",
+            "Heritage",
+            "Islands"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "宫岛严岛神社",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Japan_-_Miyajima_-_Itsukushima_Shrine.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Japan_-_Miyajima_-_Itsukushima_Shrine.jpg",
+        "credit": "Vanvelthem Cédric"
+      }
+    },
+    {
+      "id": "okinawa",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "冲绳（那霸）",
+        "en": "Okinawa / Naha"
+      },
+      "airports": [
+        "OKA"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "琉球文化、亚热带海岸、市场街区与度假体验并存。",
+          "attractions": [
+            "那霸国际通：购物和冲绳料理集中地",
+            "首里城公园：琉球王国历史场所，建筑修复及开放区域以官方为准",
+            "冲绳美丽海水族馆：位于本岛北部",
+            "万座毛：海岸断崖景观"
+          ],
+          "food": "冲绳面、苦瓜炒什锦、海葡萄。",
+          "tip": "OKA 位于那霸；前往本岛北部的美丽海水族馆需要较长车程。",
+          "tags": [
+            "海滨",
+            "历史",
+            "岛屿"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "Ryukyuan culture, subtropical coasts, market streets and island leisure.",
+          "attractions": [
+            "Kokusai-dori: shopping and Okinawan food in Naha",
+            "Shuri Castle Park: check official restoration and access notices",
+            "Okinawa Churaumi Aquarium: in the north of the main island",
+            "Cape Manzamo: coastal cliffs"
+          ],
+          "food": "Okinawa soba, goya champuru and sea grapes.",
+          "tip": "OKA serves Naha. Allow a longer road journey to the aquarium in northern Okinawa.",
+          "tags": [
+            "Coast",
+            "History",
+            "Islands"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "那霸国际通",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/JP-47_Naha_Kokusai-dori_street.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:JP-47_Naha_Kokusai-dori_street.jpg",
+        "credit": "Hajime NAKANO (jetalone)"
+      }
+    },
+    {
+      "id": "sendai",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "仙台",
+        "en": "Sendai"
+      },
+      "airports": [
+        "SDJ"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "东北地方的都市门户，伊达政宗历史及松岛海湾风光是主要看点。",
+          "attractions": [
+            "瑞凤殿：伊达政宗相关的历史建筑",
+            "仙台城遗址：青叶山展望与历史景点",
+            "定禅寺通：林荫大道",
+            "松岛湾：日本著名海湾景观，适合近郊一日游"
+          ],
+          "food": "牛舌、毛豆泥甜点（ずんだ）。",
+          "tip": "SDJ 是仙台机场；松岛与市中心需通过铁路等方式往返。",
+          "tags": [
+            "历史",
+            "东北",
+            "海湾"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A Tohoku gateway for Date Masamune history and Matsushima Bay excursions.",
+          "attractions": [
+            "Zuihoden: a historic mausoleum complex",
+            "Sendai Castle ruins: Aobayama views and history",
+            "Jozenji-dori: a tree-lined avenue",
+            "Matsushima Bay: a popular day trip beyond the city"
+          ],
+          "food": "Grilled beef tongue and zunda sweets.",
+          "tip": "SDJ is Sendai Airport. Allow rail travel between central Sendai and Matsushima.",
+          "tags": [
+            "History",
+            "Tohoku",
+            "Bays"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "瑞凤殿",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Sendai_Zuiho-den_Mausoleum_1.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Sendai_Zuiho-den_Mausoleum_1.jpg",
+        "credit": "Zairon"
+      }
+    },
+    {
+      "id": "takamatsu",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "高松",
+        "en": "Takamatsu"
+      },
+      "airports": [
+        "TAK"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "香川县的濑户内海门户，以日式园林、乌冬及艺术岛行程闻名。",
+          "attractions": [
+            "栗林公园：精致的传统日式庭园",
+            "高松城遗址／玉藻公园：水城遗迹",
+            "屋岛：山顶景观与历史景点",
+            "直岛：从高松乘船前往的艺术岛（需确认航班和船班衔接）"
+          ],
+          "food": "赞岐乌冬、骨付鸡。",
+          "tip": "直岛并不位于高松市区，乘船往返应预留候船时间。",
+          "tags": [
+            "园林",
+            "艺术",
+            "海岛"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A Seto Inland Sea gateway for Japanese gardens, udon and art-island trips.",
+          "attractions": [
+            "Ritsurin Garden: a traditional landscape garden",
+            "Takamatsu Castle ruins / Tamamo Park: a coastal castle site",
+            "Yashima: hilltop scenery and historic sites",
+            "Naoshima: an art island reached by boat; check connections"
+          ],
+          "food": "Sanuki udon and honetsuki-dori chicken.",
+          "tip": "Naoshima is not in central Takamatsu; allow waiting and sailing time.",
+          "tags": [
+            "Gardens",
+            "Art",
+            "Islands"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "栗林公园",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Ritsurin_Garden_-_Takamatsu.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Ritsurin_Garden_-_Takamatsu.jpg",
+        "credit": "Vanvelthem Cédric"
+      }
+    },
+    {
+      "id": "komatsu",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "小松／金泽地区",
+        "en": "Komatsu / Kanazawa"
+      },
+      "airports": [
+        "KMQ"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "连接石川县小松市、加贺温泉乡及金泽传统街区的机场入口。",
+          "attractions": [
+            "那谷寺：小松市山林寺庙与岩壁景观",
+            "粟津温泉：加贺温泉乡之一",
+            "兼六园：金泽著名庭园，须另外前往金泽",
+            "东茶屋街：金泽传统街区"
+          ],
+          "food": "加贺料理、金泽海鲜、金箔甜点。",
+          "tip": "KMQ 是小松机场，不在金泽市中心；前往金泽或加贺温泉乡需另计地面交通时间。",
+          "tags": [
+            "寺庙",
+            "温泉",
+            "传统街区"
+          ],
+          "stay": "2–4 天"
+        },
+        "en": {
+          "description": "An airport gateway to Komatsu, Kaga hot springs and the traditional districts of Kanazawa.",
+          "attractions": [
+            "Natadera: a wooded temple and rock scenery in Komatsu",
+            "Awazu Onsen: one of the Kaga hot-spring areas",
+            "Kenrokuen: a garden requiring a transfer to Kanazawa",
+            "Higashi Chaya District: historic tea-house streets in Kanazawa"
+          ],
+          "food": "Kaga cuisine, Kanazawa seafood and gold-leaf sweets.",
+          "tip": "KMQ is Komatsu Airport, not a central Kanazawa airport. Plan onward ground transport.",
+          "tags": [
+            "Temples",
+            "Hot springs",
+            "Historic streets"
+          ],
+          "stay": "2–4 days"
+        }
+      },
+      "photo": {
+        "label": "小松市那谷寺",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Natadera.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Natadera.jpg",
+        "credit": "Akimoto"
+      }
+    },
+    {
+      "id": "ishigaki",
+      "region": "EA",
+      "market": "JP",
+      "name": {
+        "zh": "石垣岛",
+        "en": "Ishigaki"
+      },
+      "airports": [
+        "ISG"
+      ],
+      "seasonal": true,
+      "copy": {
+        "zh": {
+          "description": "八重山群岛的海岛度假目的地，拥有珊瑚海域与自然观景点。",
+          "attractions": [
+            "川平湾：著名碧海景观与玻璃底船（部分区域不适合游泳）",
+            "玉取崎展望台：海岸与山岭景观",
+            "竹富岛：可乘船体验传统红瓦聚落",
+            "米原海滩：浮潜等亲海活动（注意海况和安全）"
+          ],
+          "food": "石垣牛、八重山荞麦面。",
+          "tip": "季节性航点：HK Express 官方公布的下一夏季服务期为 2027-03-28 至 2027-10-30；不能标为 2026-11-15 当天正常运营的航线。",
+          "tags": [
+            "海岛",
+            "自然",
+            "季节性"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A Yaeyama island getaway with coral seas, coastal viewpoints and nearby island villages.",
+          "attractions": [
+            "Kabira Bay: scenery and glass-bottom boats; some areas are unsuitable for swimming",
+            "Tamatorizaki Observatory: coast and mountain views",
+            "Taketomi Island: traditional red-tile villages reached by boat",
+            "Yonehara Beach: check sea conditions before entering the water"
+          ],
+          "food": "Ishigaki beef and Yaeyama soba.",
+          "tip": "Seasonal destination: the cited HK Express notice lists summer service for 28 March–30 October 2027. Check current official schedules before booking.",
+          "tags": [
+            "Islands",
+            "Nature",
+            "Seasonal"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "川平湾",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Ishigaki_Kabira_Bay.JPG",
+        "source": "https://commons.wikimedia.org/wiki/File:Ishigaki_Kabira_Bay.JPG",
+        "credit": "BenedettaR"
+      }
+    },
+    {
+      "id": "seoul",
+      "region": "EA",
+      "market": "KR",
+      "name": {
+        "zh": "首尔",
+        "en": "Seoul"
+      },
+      "airports": [
+        "ICN"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "韩流购物、宫殿古迹、咖啡街区与丰富的城市美食集中。",
+          "attractions": [
+            "景福宫：朝鲜王朝代表性宫殿",
+            "北村韩屋村：传统街区，须尊重居民及游客管理规定",
+            "N 首尔塔：南山观景地标",
+            "明洞：购物、餐饮和步行街区"
+          ],
+          "food": "韩式烤肉、辣炒年糕、参鸡汤。",
+          "tip": "ICN 是仁川国际机场，抵达首尔市区需要额外地面交通。",
+          "tags": [
+            "宫殿",
+            "购物",
+            "城市"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "Discover palace heritage, shopping districts, cafes and Korean food.",
+          "attractions": [
+            "Gyeongbokgung: a major Joseon palace",
+            "Bukchon Hanok Village: respect residents and visitor restrictions",
+            "N Seoul Tower: city views from Namsan",
+            "Myeongdong: shopping and food streets"
+          ],
+          "food": "Korean barbecue, tteokbokki and samgyetang.",
+          "tip": "ICN is Incheon International Airport. Allow an onward transfer to central Seoul.",
+          "tags": [
+            "Palaces",
+            "Shopping",
+            "City"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "景福宫光化门",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Gwanghwamun%2C_Gyeongbokgung.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Gwanghwamun%2C_Gyeongbokgung.jpg",
+        "credit": "（见文件来源页）"
+      }
+    },
+    {
+      "id": "busan",
+      "region": "EA",
+      "market": "KR",
+      "name": {
+        "zh": "釜山",
+        "en": "Busan"
+      },
+      "airports": [
+        "PUS"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "韩国东南部海港城市，城市海滩、彩色山坡聚落与海鲜市场兼备。",
+          "attractions": [
+            "海云台海水浴场：著名城市沙滩与高层天际线",
+            "甘川文化村：彩色山坡街区",
+            "广安里海水浴场：广安大桥夜景",
+            "札嘎其市场：海鲜市场与港口风情"
+          ],
+          "food": "猪肉汤饭、鱼糕、海鲜。",
+          "tip": "海云台和甘川文化村相隔较远，可按地理区域拆分日程。",
+          "tags": [
+            "海港",
+            "海滩",
+            "美食"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A port city combining urban beaches, colourful hillside districts and seafood markets.",
+          "attractions": [
+            "Haeundae Beach: beach and skyline",
+            "Gamcheon Culture Village: a colourful hillside neighbourhood",
+            "Gwangalli Beach: views of the illuminated bridge",
+            "Jagalchi Market: seafood and harbour life"
+          ],
+          "food": "Pork soup with rice, fish cakes and seafood.",
+          "tip": "Haeundae and Gamcheon are far apart; organise visits by area.",
+          "tags": [
+            "Harbour",
+            "Beaches",
+            "Food"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "海云台海滩",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Haeundae_District_and_Beach.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Haeundae_District_and_Beach.jpg",
+        "credit": "Masterhatch"
+      }
+    },
+    {
+      "id": "daegu",
+      "region": "EA",
+      "market": "KR",
+      "name": {
+        "zh": "大邱",
+        "en": "Daegu"
+      },
+      "airports": [
+        "TAE"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "韩国岭南地区的城市旅游目的地，适合山地眺望、传统市场和地方美食。",
+          "attractions": [
+            "前山公园／前山展望台：俯瞰大邱城景",
+            "西门市场：传统市场与夜市文化",
+            "桐华寺：八公山一带佛寺",
+            "金光石路：音乐主题街区"
+          ],
+          "food": "烤肥肠（막창）、扁饺子（납작만두）。",
+          "tip": "部分登山路段和缆车服务受天气影响，出行前查看开放情况。",
+          "tags": [
+            "山景",
+            "市场",
+            "城市"
+          ],
+          "stay": "1–2 天"
+        },
+        "en": {
+          "description": "A city break for hilltop views, traditional markets and local food.",
+          "attractions": [
+            "Apsan Park and Observatory: city views",
+            "Seomun Market: traditional market and evening food",
+            "Donghwasa: a temple near Palgongsan",
+            "Kim Gwangseok Street: a music-themed neighbourhood"
+          ],
+          "food": "Grilled makchang and flat dumplings.",
+          "tip": "Mountain paths and cable-car services may be affected by weather; check access before travelling.",
+          "tags": [
+            "Mountains",
+            "Markets",
+            "City"
+          ],
+          "stay": "1–2 days"
+        }
+      },
+      "photo": {
+        "label": "前山眺望大邱市景",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Apsan.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Apsan.jpg",
+        "credit": "Pfc. Shim, Ji-sung / USAG Daegu Public Affairs"
+      }
+    },
+    {
+      "id": "jeju",
+      "region": "EA",
+      "market": "KR",
+      "name": {
+        "zh": "济州",
+        "en": "Jeju"
+      },
+      "airports": [
+        "CJU"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "火山岛自然景观、海岸公路、乡村咖啡馆与特色海鲜料理。",
+          "attractions": [
+            "城山日出峰：著名凝灰火山锥景点",
+            "汉拿山国立公园：火山山地徒步（路线/预约规则另查）",
+            "柱状节理带：海岸火山岩地貌",
+            "牛岛：可乘船游览的离岛"
+          ],
+          "food": "黑猪肉、鲍鱼粥、柑橘制品。",
+          "tip": "济州岛面积较大，景点跨市郡分布，公交或租车所需时间差异明显。",
+          "tags": [
+            "火山",
+            "海岛",
+            "徒步"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "A volcanic island of coastal drives, hiking routes and distinctive local dishes.",
+          "attractions": [
+            "Seongsan Ilchulbong: a volcanic tuff cone",
+            "Hallasan National Park: check trail and reservation arrangements",
+            "Jusangjeolli cliffs: coastal volcanic formations",
+            "Udo: a nearby island reached by boat"
+          ],
+          "food": "Black pork, abalone porridge and citrus products.",
+          "tip": "Jeju is a large island. Travel times differ considerably by bus and car.",
+          "tags": [
+            "Volcanoes",
+            "Islands",
+            "Hiking"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "城山日出峰",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Seongsan_Ilchulbong.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Seongsan_Ilchulbong.jpg",
+        "credit": "螺钉"
+      }
+    },
+    {
+      "id": "bangkok",
+      "region": "SEA",
+      "market": "TH",
+      "name": {
+        "zh": "曼谷",
+        "en": "Bangkok"
+      },
+      "airports": [
+        "BKK"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "寺庙、河滨建筑、夜市和现代商场并存的热带大都市。",
+          "attractions": [
+            "郑王庙（Wat Arun）：湄南河畔地标",
+            "大皇宫与玉佛寺：曼谷核心历史景点",
+            "卧佛寺（Wat Pho）：大型卧佛与寺庙建筑",
+            "恰图恰周末市场：周末为主要体验时段"
+          ],
+          "food": "冬阴功、泰式炒河粉、芒果糯米饭。",
+          "tip": "BKK 指素万那普机场，勿与廊曼机场 DMK 混淆；进入寺庙需遵守着装要求。",
+          "tags": [
+            "寺庙",
+            "夜市",
+            "美食"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A tropical metropolis of riverside temples, markets and modern shopping.",
+          "attractions": [
+            "Wat Arun: a landmark beside the Chao Phraya River",
+            "Grand Palace and Wat Phra Kaew: historic landmarks",
+            "Wat Pho: temple complex and reclining Buddha",
+            "Chatuchak Weekend Market: best planned around its weekend operation"
+          ],
+          "food": "Tom yum, pad thai and mango sticky rice.",
+          "tip": "BKK is Suvarnabhumi Airport, not DMK Don Mueang. Observe temple dress requirements.",
+          "tags": [
+            "Temples",
+            "Markets",
+            "Food"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "郑王庙",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Wat_Arun_in_Bangkok_%281%29.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Wat_Arun_in_Bangkok_%281%29.jpg",
+        "credit": "Krzysztof Golik"
+      }
+    },
+    {
+      "id": "chiang-mai",
+      "region": "SEA",
+      "market": "TH",
+      "name": {
+        "zh": "清迈",
+        "en": "Chiang Mai"
+      },
+      "airports": [
+        "CNX"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "泰北古城，寺庙、山景、夜市及慢节奏咖啡文化是主要特色。",
+          "attractions": [
+            "双龙寺（素贴寺）：俯瞰清迈的山地佛寺",
+            "契迪龙寺：清迈古城内重要寺庙",
+            "周日步行街：古城夜市体验",
+            "茵他侬国家公园：泰国北部山地自然景观，适合一日游"
+          ],
+          "food": "泰北咖喱面（Khao Soi）、泰北香肠。",
+          "tip": "茵他侬国家公园距离市区较远，雨季山路与天气可能影响行程。",
+          "tags": [
+            "古城",
+            "寺庙",
+            "山地"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "Northern Thailand temples, mountain trips, night markets and relaxed cafe culture.",
+          "attractions": [
+            "Wat Phra That Doi Suthep: a hillside temple",
+            "Wat Chedi Luang: a major old-city temple",
+            "Sunday Walking Street: an evening market",
+            "Doi Inthanon National Park: a separate mountain day trip"
+          ],
+          "food": "Khao soi and northern Thai sausage.",
+          "tip": "Doi Inthanon is far from the city. Rain and mountain-road conditions can affect plans.",
+          "tags": [
+            "Old city",
+            "Temples",
+            "Mountains"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "素贴寺",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Wat_Phra_That_Doi_Suthep_-_Chiang_Mai.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Wat_Phra_That_Doi_Suthep_-_Chiang_Mai.jpg",
+        "credit": "JJ Harrison"
+      }
+    },
+    {
+      "id": "phuket",
+      "region": "SEA",
+      "market": "TH",
+      "name": {
+        "zh": "普吉",
+        "en": "Phuket"
+      },
+      "airports": [
+        "HKT"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "安达曼海热带度假岛，海滩、老城建筑和岛屿出海活动丰富。",
+          "attractions": [
+            "神仙半岛（Promthep Cape）：热门日落海角",
+            "普吉老城：彩色南洋风格街屋",
+            "芭东海滩：著名沙滩及夜生活区",
+            "皮皮岛：常见一日船游目的地（以海况为准）"
+          ],
+          "food": "泰南咖喱、海鲜、炒河粉。",
+          "tip": "乘船、浮潜和跨岛行程强烈受风浪及季节影响。",
+          "tags": [
+            "海滩",
+            "夜景",
+            "海岛"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "An Andaman island escape for beaches, old-town streets and boat excursions.",
+          "attractions": [
+            "Promthep Cape: a sunset viewpoint",
+            "Phuket Old Town: colourful Sino-Portuguese streets",
+            "Patong Beach: beach and nightlife",
+            "Phi Phi Islands: a boat excursion subject to sea conditions"
+          ],
+          "food": "Southern Thai curry, seafood and fried noodles.",
+          "tip": "Boat trips, snorkelling and island crossings depend strongly on wind, sea conditions and the season.",
+          "tags": [
+            "Beaches",
+            "Nightlife",
+            "Islands"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "神仙半岛",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Phuket_Promthep_Cape.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Phuket_Promthep_Cape.jpg",
+        "credit": "Ahoerstemeier"
+      }
+    },
+    {
+      "id": "hanoi",
+      "region": "SEA",
+      "market": "VN",
+      "name": {
+        "zh": "河内",
+        "en": "Hanoi"
+      },
+      "airports": [
+        "HAN"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "越南首都，法式殖民时期街区、湖滨生活和传统美食结合。",
+          "attractions": [
+            "还剑湖：老城区核心湖滨空间",
+            "河内老城区：狭窄街道与传统商铺",
+            "文庙－国子监：儒学与古代教育建筑",
+            "胡志明陵：历史纪念场所，入内安排以官方公告为准"
+          ],
+          "food": "越南河粉、烤肉米粉、蛋咖啡。",
+          "tip": "HAN（内排国际机场）位于市区外，老城区内更适合步行。",
+          "tags": [
+            "古城",
+            "湖景",
+            "美食"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "Discover old streets, lakeside life, historic architecture and Vietnamese food.",
+          "attractions": [
+            "Hoan Kiem Lake: lakeside walks near the old quarter",
+            "Hanoi Old Quarter: narrow streets and traditional shops",
+            "Temple of Literature: historic education and Confucian heritage",
+            "Ho Chi Minh Mausoleum: check official access arrangements"
+          ],
+          "food": "Pho, bun cha and egg coffee.",
+          "tip": "HAN Noi Bai Airport is outside the city. The old quarter is well suited to walking.",
+          "tags": [
+            "Old city",
+            "Lakes",
+            "Food"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "还剑湖",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Hanoi%2C_Vietnam%2C_Hoan_Kiem_Lake.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Hanoi%2C_Vietnam%2C_Hoan_Kiem_Lake.jpg",
+        "credit": "Vyacheslav Argenberg"
+      }
+    },
+    {
+      "id": "da-nang",
+      "region": "SEA",
+      "market": "VN",
+      "name": {
+        "zh": "岘港",
+        "en": "Da Nang"
+      },
+      "airports": [
+        "DAD"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "兼具沙滩度假、山地游乐设施与中部越南文化古镇的门户。",
+          "attractions": [
+            "巴拿山佛手金桥：山顶步行桥和景观",
+            "美溪海滩：城市海岸线",
+            "五行山：洞穴、佛寺与山景",
+            "会安古城：邻近但不在岘港市内，适合独立安排半日至一日"
+          ],
+          "food": "广南面（Mì Quảng）、越南煎饼。",
+          "tip": "巴拿山金桥属于巴拿山景区，通常涉及交通、门票和缆车。",
+          "tags": [
+            "海滩",
+            "地标",
+            "古镇"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A gateway to central Vietnam beaches, mountain attractions and nearby heritage towns.",
+          "attractions": [
+            "Golden Bridge at Ba Na Hills: a mountaintop landmark",
+            "My Khe Beach: the city coast",
+            "Marble Mountains: caves, temples and views",
+            "Hoi An Ancient Town: outside Da Nang; allow a separate half-day or full day"
+          ],
+          "food": "Mi Quang noodles and Vietnamese pancakes.",
+          "tip": "Golden Bridge is inside the Ba Na Hills attraction; plan transfers, admission and cable-car access.",
+          "tags": [
+            "Beaches",
+            "Landmarks",
+            "Old towns"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "巴拿山金桥",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Da_Nang_Golden_Bridge%2C_Sun_World_Ba_Na_Hills.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Da_Nang_Golden_Bridge%2C_Sun_World_Ba_Na_Hills.jpg",
+        "credit": "Vivu Vietnam"
+      }
+    },
+    {
+      "id": "phu-quoc",
+      "region": "SEA",
+      "market": "VN",
+      "name": {
+        "zh": "富国岛",
+        "en": "Phu Quoc"
+      },
+      "airports": [
+        "PQC"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "越南南部海岛度假目的地，适合看日落、海滩休闲及出海。",
+          "attractions": [
+            "白沙滩（Sao Beach）：较知名的海岛沙滩",
+            "香岛缆车（Hon Thom）：跨海观景项目",
+            "丁驹庙（Dinh Cau）：海滨地标",
+            "富国岛国家公园：森林与自然景观"
+          ],
+          "food": "海鲜、鱼露风味料理、胡椒料理。",
+          "tip": "海况、季风与船游项目开放可能变化，前往离岛前查询当日信息。",
+          "tags": [
+            "海岛",
+            "沙滩",
+            "度假"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "A southern Vietnam island for sunsets, beaches and boat trips.",
+          "attractions": [
+            "Sao Beach: a well-known island beach",
+            "Hon Thom cable car: sea views",
+            "Dinh Cau: a coastal landmark",
+            "Phu Quoc National Park: forest and nature"
+          ],
+          "food": "Seafood, fish-sauce dishes and local pepper dishes.",
+          "tip": "Monsoons and sea conditions affect boat trips and island access. Check same-day information.",
+          "tags": [
+            "Islands",
+            "Beaches",
+            "Resorts"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "富国岛海滩",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Phu_Quoc_Beach.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Phu_Quoc_Beach.jpg",
+        "credit": "FrogsLegs71"
+      }
+    },
+    {
+      "id": "kuala-lumpur",
+      "region": "SEA",
+      "market": "MY",
+      "name": {
+        "zh": "吉隆坡（梳邦机场）",
+        "en": "Kuala Lumpur / Subang"
+      },
+      "airports": [
+        "SZB"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "多元文化大都市，摩天大楼、印度文化石灰岩洞和美食街区汇聚。",
+          "attractions": [
+            "双子塔（Petronas Twin Towers）：城市地标",
+            "黑风洞（Batu Caves）：印度教寺庙与石灰岩洞",
+            "独立广场：历史建筑群及广场",
+            "吉隆坡塔（KL Tower）：城市观景点"
+          ],
+          "food": "椰浆饭、沙爹、炒粿条。",
+          "tip": "此资料中的目的地机场为 SZB 梳邦机场，不是 KUL 吉隆坡国际机场，请核对机场代码。",
+          "tags": [
+            "摩天楼",
+            "多元文化",
+            "美食"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A multicultural city of skyscrapers, limestone temples and food districts.",
+          "attractions": [
+            "Petronas Twin Towers: a city landmark",
+            "Batu Caves: Hindu temples and limestone caves",
+            "Merdeka Square: historic architecture",
+            "KL Tower: city views"
+          ],
+          "food": "Nasi lemak, satay and char kway teow.",
+          "tip": "The airport in this guide is SZB Subang, not KUL Kuala Lumpur International. Check the airport code.",
+          "tags": [
+            "Skyscrapers",
+            "Culture",
+            "Food"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "双子塔",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Petronas_Towers%2C_Kuala_Lumpur.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Petronas_Towers%2C_Kuala_Lumpur.jpg",
+        "credit": "Claudio Bentz"
+      }
+    },
+    {
+      "id": "penang",
+      "region": "SEA",
+      "market": "MY",
+      "name": {
+        "zh": "槟城",
+        "en": "Penang"
+      },
+      "airports": [
+        "PEN"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "马来西亚著名美食与历史街区目的地，兼具乔治市遗产和海岛景观。",
+          "attractions": [
+            "乔治市历史城区：世界遗产街区与壁画",
+            "极乐寺（Kek Lok Si）：规模宏大的寺庙群",
+            "升旗山（Penang Hill）：城市与海峡观景",
+            "峇都丁宜海滩：海滨休闲区"
+          ],
+          "food": "炒粿条、亚参叻沙、福建面。",
+          "tip": "PEN 为槟城国际机场；乔治市、升旗山与峇都丁宜分布在岛上不同区域。",
+          "tags": [
+            "遗产",
+            "美食",
+            "海景"
+          ],
+          "stay": "3–4 天"
+        },
+        "en": {
+          "description": "A food and heritage destination centred on George Town and island scenery.",
+          "attractions": [
+            "George Town heritage area: historic streets and murals",
+            "Kek Lok Si: a large temple complex",
+            "Penang Hill: city and strait views",
+            "Batu Ferringhi: coastal leisure"
+          ],
+          "food": "Char kway teow, assam laksa and Hokkien mee.",
+          "tip": "George Town, Penang Hill and Batu Ferringhi are in different parts of the island.",
+          "tags": [
+            "Heritage",
+            "Food",
+            "Coast"
+          ],
+          "stay": "3–4 days"
+        }
+      },
+      "photo": {
+        "label": "极乐寺",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Kek_Lok_Si_Temple%2C_Penang.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Kek_Lok_Si_Temple%2C_Penang.jpg",
+        "credit": "Keejw"
+      }
+    },
+    {
+      "id": "kota-kinabalu",
+      "region": "SEA",
+      "market": "MY",
+      "name": {
+        "zh": "亚庇",
+        "en": "Kota Kinabalu"
+      },
+      "airports": [
+        "BKI"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "沙巴州海岛跳岛、落日与热带雨林旅行的主要城市入口。",
+          "attractions": [
+            "亚庇市立清真寺：著名水上倒影景观",
+            "东姑阿都拉曼海洋公园：近岸群岛与浮潜",
+            "丹绒亚路海滩：著名日落观景点",
+            "神山公园（Kinabalu Park）：距离亚庇较远的山地自然保护区"
+          ],
+          "food": "沙巴海鲜、斗亚兰面、椰子布丁。",
+          "tip": "清真寺参访需遵守着装、开放时段和宗教活动安排；神山公园为较远的一日行程。",
+          "tags": [
+            "海岛",
+            "自然",
+            "日落"
+          ],
+          "stay": "3–5 天"
+        },
+        "en": {
+          "description": "A Sabah gateway for nearby islands, coastal sunsets and rainforest excursions.",
+          "attractions": [
+            "Kota Kinabalu City Mosque: waterfront reflections",
+            "Tunku Abdul Rahman Marine Park: islands and snorkelling",
+            "Tanjung Aru Beach: sunset views",
+            "Kinabalu Park: a mountain excursion far from the city"
+          ],
+          "food": "Sabah seafood, Tuaran noodles and coconut pudding.",
+          "tip": "Respect mosque dress and visiting arrangements. Kinabalu Park needs a longer road journey.",
+          "tags": [
+            "Islands",
+            "Nature",
+            "Sunsets"
+          ],
+          "stay": "3–5 days"
+        }
+      },
+      "photo": {
+        "label": "亚庇市立清真寺",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Kota_Kinabalu_city_Mosque.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Kota_Kinabalu_city_Mosque.jpg",
+        "credit": "Anton Zelenov"
+      }
+    },
+    {
+      "id": "manila",
+      "region": "SEA",
+      "market": "PH",
+      "name": {
+        "zh": "马尼拉",
+        "en": "Manila"
+      },
+      "airports": [
+        "MNL"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "菲律宾首都都会区，殖民时期建筑、国家博物馆和都市文化集中。",
+          "attractions": [
+            "王城（Intramuros）：西班牙殖民时期城墙城区",
+            "圣地亚哥堡（Fort Santiago）：历史遗址",
+            "黎刹公园（Rizal Park）：首都重要城市公园",
+            "菲律宾国家美术馆：公共艺术收藏"
+          ],
+          "food": "Adobo 炖肉、Halo-halo 甜品、烤乳猪。",
+          "tip": "MNL 位于马尼拉都会区，交通拥堵可能明显增加景点间通行时间。",
+          "tags": [
+            "历史",
+            "博物馆",
+            "城市"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "Explore colonial-era streets, national collections and a busy metropolitan capital.",
+          "attractions": [
+            "Intramuros: the historic walled city",
+            "Fort Santiago: a historic landmark",
+            "Rizal Park: a major city park",
+            "National Museum of Fine Arts: public art collections"
+          ],
+          "food": "Adobo, halo-halo and lechon.",
+          "tip": "MNL serves metropolitan Manila. Congestion can greatly increase transfers between attractions.",
+          "tags": [
+            "History",
+            "Museums",
+            "City"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "马尼拉王城",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Intramuros_Manila.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:Intramuros_Manila.jpg",
+        "credit": "Armanbarbuco"
+      }
+    },
+    {
+      "id": "clark",
+      "region": "SEA",
+      "market": "PH",
+      "name": {
+        "zh": "克拉克／安赫莱斯",
+        "en": "Clark / Angeles City"
+      },
+      "airports": [
+        "CRK"
+      ],
+      "seasonal": false,
+      "copy": {
+        "zh": {
+          "description": "位于菲律宾吕宋岛邦板牙省的交通门户，可连接克拉克自由港及火山地貌旅行。",
+          "attractions": [
+            "皮纳图博火山口湖：需另行安排向导和接驳，受活动管理及天气限制",
+            "克拉克博物馆（Clark Museum）：当地历史展示",
+            "克拉克自由港区：园区、餐饮和休闲设施",
+            "Aqua Planet：大型水上乐园（开放情况需核验）"
+          ],
+          "food": "邦板牙 Sisig 铁板猪肉、地方甜点。",
+          "tip": "CRK 为克拉克国际机场，不等于马尼拉 MNL；前往火山口可能需要许可、专用车辆与向导。",
+          "tags": [
+            "自然",
+            "火山",
+            "户外"
+          ],
+          "stay": "2–3 天"
+        },
+        "en": {
+          "description": "A Pampanga gateway for Clark Freeport and guided volcanic-landscape excursions.",
+          "attractions": [
+            "Mount Pinatubo crater lake: guides and transfers are needed; access depends on weather and management",
+            "Clark Museum: local history",
+            "Clark Freeport: parks, dining and leisure",
+            "Aqua Planet: check current opening arrangements"
+          ],
+          "food": "Pampanga sisig and local desserts.",
+          "tip": "CRK Clark International is not MNL Manila. Pinatubo trips may need permits, specialist vehicles and guides.",
+          "tags": [
+            "Nature",
+            "Volcanoes",
+            "Outdoors"
+          ],
+          "stay": "2–3 days"
+        }
+      },
+      "photo": {
+        "label": "皮纳图博火山口湖",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/50/The_Crater_Lake_of_Mt._Pinatubo.jpg",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Crater_Lake_of_Mt._Pinatubo.jpg",
+        "credit": "Lemuel Salibio"
+      }
+    }
+  ]
+}

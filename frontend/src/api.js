@@ -1,3 +1,4 @@
+import { errorText } from './i18n';
 import { useEffect, useRef, useState } from 'react';
 
 const clientHeaders = { 'Content-Type': 'application/json', 'X-Twinomation-Client': 'local-demo' };
@@ -11,7 +12,7 @@ export async function api(path, { token, method = 'GET', body, key, signal } = {
   let data;
   try { data = await response.json(); } catch { throw new Error('The service is unavailable. Please try again.'); }
   if (!response.ok) {
-    const error = new Error(data.error?.message || 'Something went wrong. Please try again.');
+    const error = new Error(errorText(data.error, response.status));
     error.status = response.status;
     throw error;
   }
@@ -71,4 +72,27 @@ export function useLive(path, token, onRefresh) {
     };
   }, [path, token]);
   return status;
+}
+
+/** Upload one file as a raw body (no multipart dependency on the server). */
+export async function uploadFile(caseId, file, token, workOrderId) {
+  const query = new URLSearchParams({ name: file.name, ...(workOrderId ? { work_order_id: workOrderId } : {}) });
+  const response = await fetch(`/api/cases/${caseId}/files?${query}`, {
+    method: 'POST', body: file,
+    headers: { 'Content-Type': 'application/octet-stream', 'X-Twinomation-Client': 'local-demo', Authorization: `Bearer ${token}` }
+  });
+  let data = {};
+  try { data = await response.json(); } catch { /* body may be empty on proxy errors */ }
+  if (!response.ok) throw new Error(errorText(data.error, response.status));
+  return data;
+}
+
+/** Download with the bearer session, then hand the browser a local object URL. */
+export async function downloadFile(file, token) {
+  const response = await fetch(`/api/files/${file.id}`, { headers: { Authorization: `Bearer ${token}` } });
+  if (!response.ok) throw new Error('Download failed.');
+  const url = URL.createObjectURL(await response.blob());
+  const a = Object.assign(document.createElement('a'), { href: url, download: file.name });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }

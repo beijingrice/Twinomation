@@ -109,9 +109,14 @@ def test_passenger_sees_no_internal_data_before_review(env):
     assert response.headers['cache-control'] == 'no-store'
     assert response.headers['referrer-policy'] == 'no-referrer'
     data = response.json()
-    assert set(data) == {'flight', 'current', 'timeline', 'demo'}
-    assert set(data['flight']) == {'flight_no', 'flight_date', 'station', 'destination'}
+    assert set(data) == {'flight', 'status', 'connection', 'current', 'timeline', 'demo','journey'}
+    assert set(data['journey']) == {'stage','boarding_at','recall','arrival'}
+    assert set(data['flight']) == {'flight_no', 'flight_date', 'station', 'origin', 'destination'}
     assert data['current'] == {} and data['timeline'] == []
+    # Before OCC authorises anything, passengers only see "awaiting" — no internal proposal, cause or gate.
+    assert data['status']['status'] == 'AWAITING'
+    assert data['status']['departure'] is None and data['status']['cause'] is None and data['status']['gate'] is None
+    assert data['connection'] is None
     assert all(word not in response.text for word in ('cancelled', 'readiness', 'reason', 'actor', 'draft_text'))
 
 
@@ -160,6 +165,7 @@ def test_publication_exact_content_idempotency_and_email_disabled(env):
     assert publish(client, cs, update, key='second-click').status_code == 409
     data = client.get('/api/passenger/' + token).json()
     assert len(data['timeline']) == 1 and data['timeline'][0]['text'] == text
+    assert data['timeline'][0]['text_zh'] is None
     assert 'reviewed_by' not in json.dumps(data)
     with connect(app.state.db_path) as db:
         assert db.execute("SELECT count(*) FROM case_events WHERE case_id=? AND type='UPDATE_PUBLISHED'", (case['id'],)).fetchone()[0] == 1

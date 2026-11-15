@@ -1,7 +1,11 @@
-import React from 'react';
+import React,{lazy,Suspense} from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App';
-import PassengerApp from './Passenger';
+const App=lazy(()=>import('./App'));
+const IndexPage=lazy(()=>import('./Index'));
+const PassengerApp=lazy(()=>import('./Passenger'));
+import { MODE } from './constants';
 import './styles.css';
+import {t} from './i18n';
 
-createRoot(document.getElementById('root')).render(window.location.pathname.startsWith('/passenger') ? <PassengerApp/> : <App/>);
+const Root = MODE === 'passenger' ? PassengerApp : MODE === 'index' ? IndexPage : App;
+createRoot(document.getElementById('root')).render(<Suspense fallback={<div className="loading">{t('Loading flight…')}</div>}><Root/></Suspense>);
