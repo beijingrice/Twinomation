@@ -1,236 +1,284 @@
-import React, { useState } from 'react';
-import { Activity, ArrowUpRight, CalendarClock, Check, CheckCheck, ChevronRight, ListChecks, Pause, Play, Plane, Plus, Send, Smartphone, Workflow, X } from 'lucide-react';
-import { CONDITION_META, ME, MODE, REGIONS, countReady, humanize, needsAction, nextStep, titleTopic, todoOf, waitingOn } from './constants';
+import { t, getLanguage, itemLabel, itemAnswer, eventText } from "./i18n";
+import React, { useRef, useState } from 'react';
+import { Activity, BellRing, Check, CheckCheck, ChevronRight, CircleStop, Download, FilePlus2, FileText, Hourglass, ListChecks, Paperclip, PencilLine, Plane, Plus, RotateCw, Send, ShieldCheck, Smartphone, Trash2, Upload, X, XCircle } from 'lucide-react';
+import {publishedNoticeForEvent} from './noticeTemplates';
+import {OperationsMetrics,WeatherOverview,sortFlights} from './OpsExtras';
+import CaseWorkspace from './CaseWorkspace';
+import { ACTIVE_WO, FLIGHT_STATUS, MODE, PRESET_OPTIONS, REGIONS, WO_STATUS, answerTone, humanize, latestWO, mineOf, needsAction, nextStep, notReady, todoOf, waitingOn } from './constants';
+import { passengerPreviewPath } from './passengerPreview.js';
 import { Empty, Hero, Pill, SearchField, Segmented, Widget, dateOf, relative, timeOf } from './components';
 
 const FILTERS = [['OPEN', 'Active'], ['CLOSED', 'Closed'], ['', 'All']];
-const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
-const attentionSub = n => n ? (n === 1 ? 'case needs attention' : 'cases need attention') : 'All clear';
+const plural = (n, word) => getLanguage() === 'zh' ? t(word === 'open flight' ? '{0} open flights' : '{0} outports', {0: n}) : `${n} ${word}${n === 1 ? '' : 's'}`;
 
 /* ---------- Building blocks ---------- */
 
-/** "● KIX  confirm gate and counter" — who has to do what next. */
-function NextStep({ c, showOwner = true }) {
+/** Explain the next action and name the responsible team in either workspace. */
+function NextStep({ c }) {
   const step = nextStep(c);
+  const Icon = step.owner === 'done' ? CheckCheck : ChevronRight;
   return <span className={'next ' + step.owner + (step.mine ? ' mine' : '')}>
-    <i className="dot"/>
-    {showOwner && step.who && <b>{step.who}</b>}
-    <span>{step.text}{step.more > 0 && <small className="next-more"> · +{step.more} more</small>}</span>
+    <span className="next-heading"><Icon size={16} aria-hidden="true"/><span>{step.text}</span></span>
+    <small className="next-detail">{step.detail}</small>
   </span>;
 }
 
-function CaseRow({ c, stationName, onClick }) {
-  return <button className={'case-row' + (c.status === 'CLOSED' ? ' closed' : '')} onClick={onClick}>
-    <span className="cr-flight"><strong>{c.flight_no}</strong><small>{c.station} → {c.destination}{stationName ? ` · ${stationName}` : ''}</small></span>
-    <span className="cr-time"><b>{timeOf(c.proposed_departure || c.original_departure)}</b>{c.proposed_departure && <small>was {timeOf(c.original_departure)}</small>}</span>
-    <NextStep c={c}/>
-    <ChevronRight size={16} className="cr-chevron"/>
+function OrderStatus({ order }) {
+  return <span className="order-status">
+    <Pill tone={WO_STATUS[order.status].tone}>{t(WO_STATUS[order.status].label)}</Pill>
+    <small>{t('Work order · Version {0}', {0: order.number})}</small>
+  </span>;
+}
+
+function FlightRow({ c, stationName, onClick }) {
+  const wo = latestWO(c);
+  const time = c.public_departure || wo?.proposed_departure || c.proposed_departure || c.original_departure;
+  const timeLabel = c.flight_status === 'CANCELLED' ? t('Cancelled') : c.flight_status === 'DELAYED' && !c.public_departure ? t('Time pending') : null;
+  return <button className={'case-row' + (c.status === 'CLOSED' ? ' closed' : '') + (nextStep(c).mine ? ' mine' : '')} onClick={onClick}>
+    <span className="cr-flight"><strong>{c.flight_no}{(c.has_recent_update||c.last_collaboration_at&&Date.now()-Date.parse(c.last_collaboration_at)<300000)&&<small className="recent-update">{t('New update')}</small>}</strong><small>{c.origin||c.station} → {c.destination}{stationName ? ` · ${stationName}` : ''}</small></span>
+    <span className="cr-time"><b className={timeLabel ? 'time-label' : ''}>{timeLabel || timeOf(time)}</b>{!timeLabel && time !== c.original_departure && <small>{t("was ")}{timeOf(c.original_departure)}</small>}</span>
+    <span className="cr-wo">{wo ? <OrderStatus order={wo}/> : <Pill tone="muted">{t("No work order")}</Pill>}</span>
+    <NextStep c={c} />
+    <ChevronRight size={18} className="cr-chevron" />
   </button>;
 }
 
-function CaseList({ cases, stations, onSelect, showStation = true, empty = 'No cases here' }) {
-  if (!cases.length) return <Empty title={empty} text="" icon={CheckCheck}/>;
-  return <div className="case-list">{cases.map(c => <CaseRow key={c.id} c={c} stationName={showStation ? stations.find(s => s.code === c.station)?.name : null} onClick={() => onSelect(c.id)}/>)}</div>;
+function FlightList({ cases, stations, onSelect, showStation = true, empty = 'No flights here' }) {
+  if (!cases.length) return <Empty title={empty} text={""} icon={CheckCheck} />;
+  return <div className="case-list">{cases.map((c) => <FlightRow key={c.id} c={c} stationName={showStation ? t(stations.find((s) => s.code === c.station)?.name) : null} onClick={() => onSelect(c.id)} />)}</div>;
 }
 
-/** Viewer's own tasks first, then anything needing attention, then newest. */
 const byUrgency = (a, b) => Number(!!nextStep(b).mine) - Number(!!nextStep(a).mine) || Number(needsAction(b)) - Number(needsAction(a)) || b.id - a.id;
+const workloadSub = n => MODE === 'outport'
+  ? t(n ? 'flights awaiting this station’s action' : 'No flights awaiting this station’s action')
+  : t(n ? 'flights awaiting OCC action' : 'No flights awaiting OCC action');
 
-/* ---------- Overview ---------- */
+/* ---------- OCC overview ---------- */
 
-export function OverviewPage({ stations, cases, go, onCreate }) {
-  const open = cases.filter(c => c.status === 'OPEN');
-  const attention = open.filter(needsAction).sort(byUrgency);
-  // Non-exclusive: one case can have work for the station and customer service at the same time.
-  const owners = [['station', 'Stations'], ['occ', 'Operations'], ['cs', 'Customer service']].map(([o, label]) => [o, label, open.filter(c => waitingOn(c, o)).length]);
-  owners.push(['done', 'Ready', open.filter(c => !needsAction(c)).length]);
+export function OverviewPage({ stations, cases, go, onCreate,token,refreshTick }) {
+  const open = cases.filter((c) => c.status === 'OPEN');
+  const mine = mineOf(open);
+  const strip = [['occ', 'OCC action', open.filter((c) => waitingOn(c, 'occ')).length], ['station', 'Station action', open.filter((c) => waitingOn(c, 'station')).length]];
   return <>
-    <Hero title="All outports" value={attention.length} sub={attentionSub(attention.length)} line={`${plural(open.length, 'open case')} across ${stations.length} outports`}>
-      {onCreate && <div className="hero-actions"><button className="button primary" onClick={onCreate}><Plus size={16}/>New case</button></div>}
+    <Hero title={t("All outports")} value={mine} sub={t(workloadSub(mine))} line={t('{0} open flights · {1} outports', {0: open.length, 1: stations.length})}>
+      {onCreate && <div className="hero-actions"><button className="button glass" onClick={onCreate}><Plus size={16} />{t("New flight case")}</button></div>}
     </Hero>
     <div className="grid">
-      <Widget span={6} icon={Workflow} label="Open cases with work for">
-        <div className="owner-strip">{owners.map(([o, label, n]) => <div key={o} className={'owner ' + o + (n ? '' : ' zero')}><strong>{n}</strong><span>{label}{o === ME && <em> · you</em>}</span></div>)}</div>
+      <OperationsMetrics cases={cases}/>
+      <Widget span={6} icon={ListChecks} label={t("Waiting on")}>
+        <div className="owner-strip">{strip.map(([o, label, n]) => <div key={o} className={'owner ' + o + (n ? '' : ' zero')}><strong>{n}</strong><span>{t(label)}</span></div>)}</div>
       </Widget>
-      <Widget span={6} icon={ListChecks} label="Needs attention">
-        <CaseList cases={attention} stations={stations} onSelect={id => go({ page: 'case', id })} empty="Nothing needs attention"/>
+      <Widget span={6} icon={Plane} label={t("Needs action")}>
+        <FlightList cases={open.filter(needsAction).sort(byUrgency)} stations={stations} onSelect={(id) => go({ page: 'case', id })} empty={t("Nothing needs action")} />
       </Widget>
+      <Widget span={6} icon={Hourglass} label={t('Delay follow-up')}><FlightList cases={sortFlights(open.filter(c=>c.flight_status==='DELAYED'),'delay')} stations={stations} onSelect={id=>go({page:'case',id})}/></Widget>
+      <WeatherOverview stations={stations} token={token} refreshTick={refreshTick} go={go}/>
     </div>
   </>;
 }
-
-/* ---------- Region ---------- */
 
 export function RegionPage({ region, stations, cases, go }) {
-  const ss = stations.filter(s => s.region === region?.code);
-  const rc = cases.filter(c => ss.some(s => s.code === c.station));
+  const ss = stations.filter((s) => s.region === region?.code);
+  const rc = cases.filter((c) => ss.some((s) => s.code === c.station));
   return <>
-    <Hero title={region?.name || 'Region'} value={todoOf(rc)} sub={attentionSub(todoOf(rc))} line={`${region?.local} · ${plural(ss.length, 'outport')}`}/>
-    <div className="grid">{ss.map(s => {
-      const n = todoOf(cases.filter(c => c.station === s.code));
-      return <Widget key={s.code} span={3} icon={Plane} label={`${s.code} · ${s.airport}`} onClick={() => go({ page: 'station', station: s.code })}>
-        <div className="place"><h3>{s.name}</h3><span className={'place-num' + (n ? '' : ' zero')}>{n}</span></div>
-        <p className="place-note">{n ? attentionSub(n) : 'All clear'} · {plural(s.open_cases, 'open case')}</p>
+    <Hero title={region?.name || t('Region')} value={todoOf(rc)} sub={t("need action")} line={`${region?.local} · ${plural(ss.length, 'outport')}`} />
+    <div className="grid">{ss.map((s) => {
+        const n = todoOf(cases.filter((c) => c.station === s.code));
+        return <Widget key={s.code} span={3} icon={Plane} label={`${s.code} · ${t(s.airport)}`} onClick={() => go({ page: 'station', station: s.code })}>
+        <div className="place"><h3>{t(s.name)}</h3><span className={'place-num' + (n ? '' : ' zero')}>{n}</span></div>
+        <p className="place-note">{n ? t('need action') : t('All clear')} · {plural(s.open_cases, 'open flight')}</p>
       </Widget>;
-    })}</div>
+      })}</div>
   </>;
 }
 
-/* ---------- Station ---------- */
-
-export function StationPage({ station, code, cases, stations, go, onCreate }) {
+export function StationPage({ station, code, cases, stations, go, onCreate, serviceWidget }) {
   const [filter, setFilter] = useState('OPEN');
-  const sc = cases.filter(c => c.station === code);
-  const open = sc.filter(c => c.status === 'OPEN');
-  // A station viewer cares about what is waiting on them; everyone else about what needs attention.
-  const n = MODE === 'outport' ? open.filter(c => waitingOn(c, 'station')).length : todoOf(sc);
-  const sub = MODE === 'outport' ? (n ? `${n === 1 ? 'case is' : 'cases are'} waiting on you` : 'Nothing waiting on you') : attentionSub(n);
+  const sc = cases.filter((c) => c.station === code);
+  const open = sc.filter((c) => c.status === 'OPEN');
+  const n = MODE === 'outport' ? mineOf(open) : todoOf(open);
   return <>
-    <Hero title={station?.name || code} value={n} sub={sub} line={`${code} · ${station?.airport || ''} · ${plural(open.length, 'open case')}`}>
-      {onCreate && <div className="hero-actions"><button className="button primary" onClick={onCreate}><Plus size={16}/>New case</button></div>}
+    <Hero title={t(station?.name) || code} value={n} sub={MODE === 'outport' ? workloadSub(n) : t('need action')} line={`${code} · ${t(station?.airport) || ''} · ${plural(open.length, 'open flight')}`}>
+      {onCreate && <div className="hero-actions"><button className="button glass" onClick={onCreate}><Plus size={16} />{t("New flight case")}</button></div>}
     </Hero>
     <div className="grid">
-      <Widget span={6} icon={Plane} label="Cases · departure HKT" aside={<Segmented value={filter} options={FILTERS} onChange={setFilter}/>}>
-        <CaseList cases={sc.filter(c => !filter || c.status === filter).sort(byUrgency)} stations={stations} onSelect={id => go({ page: 'case', id })} showStation={false}/>
+      {MODE==='outport'&&<div className="operations-metrics s6"><div><strong>{sc.length}</strong><span>{t('Station flights')}</span></div><div><strong>{sc.reduce((n,c)=>n+(c.pending_tasks||0),0)}</strong><span>{t('Ground tasks awaiting completion')}</span></div><div><strong>{sc.filter(c=>c.boarding_recall_active).length}</strong><span>{t('Active boarding reminders')}</span></div></div>}
+      {serviceWidget}
+      <Widget span={6} icon={Plane} label={t("Flights · HKT")} aside={<Segmented value={filter} options={FILTERS} onChange={setFilter} />}>
+        <FlightList cases={sc.filter((c) => !filter || c.status === filter).sort(byUrgency)} stations={stations} onSelect={(id) => go({ page: 'case', id })} showStation={false} />
       </Widget>
     </div>
   </>;
 }
-
-/* ---------- All cases ---------- */
 
 export function CasesPage({ cases, stations, go, onCreate }) {
   const [filter, setFilter] = useState('OPEN');
   const [search, setSearch] = useState('');
-  const open = cases.filter(c => c.status === 'OPEN');
-  const match = c => `${c.flight_no} ${c.station} ${stations.find(s => s.code === c.station)?.name || ''}`.toLowerCase().includes(search.toLowerCase());
+  const [sort,setSort]=useState('departure');
+  const open = cases.filter((c) => c.status === 'OPEN');
+  const match = (c) => `${c.flight_no} ${c.station} ${stations.find((s) => s.code === c.station)?.name || ''} ${t(stations.find((s) => s.code === c.station)?.name) || ''}`.toLowerCase().includes(search.toLowerCase());
   return <>
-    <Hero title="All cases" value={open.length} sub={open.length === 1 ? 'open case' : 'open cases'} line={`${todoOf(cases)} need attention · ${cases.length - open.length} closed`}>
-      {onCreate && <div className="hero-actions"><button className="button primary" onClick={onCreate}><Plus size={16}/>New case</button></div>}
+    <Hero title={t("All flights")} value={open.length} sub={t("open")} line={t('{0} need action · {1} closed', {0: todoOf(open), 1: cases.length - open.length})}>
+      {onCreate && <div className="hero-actions"><button className="button glass" onClick={onCreate}><Plus size={16} />{t("New flight case")}</button></div>}
     </Hero>
     <div className="grid">
-      <Widget span={6} icon={Plane} label="Cases · departure HKT" aside={<div className="w-tools"><SearchField value={search} onChange={setSearch} placeholder="Flight or outport"/><Segmented value={filter} options={FILTERS} onChange={setFilter}/></div>}>
-        <CaseList cases={cases.filter(c => (!filter || c.status === filter) && match(c)).sort(byUrgency)} stations={stations} onSelect={id => go({ page: 'case', id })}/>
+      <Widget span={6} icon={Plane} label={t("Flights · HKT")} aside={<div className="w-tools"><label className="flight-sort">{t('Sort by')}<select value={sort} onChange={e=>setSort(e.target.value)}>{[['departure','Departure'],['delay','Delay length'],['station','Outstation']].map(([v,l])=><option key={v} value={v}>{t(l)}</option>)}</select></label><SearchField value={search} onChange={setSearch} placeholder={t("Flight or outport")} /><Segmented value={filter} options={FILTERS} onChange={setFilter} /></div>}>
+        <FlightList cases={sortFlights(cases.filter((c) => (!filter || c.status === filter) && match(c)),sort)} stations={stations} onSelect={(id) => go({ page: 'case', id })} />
       </Widget>
     </div>
   </>;
 }
 
-/* ---------- Review queue ---------- */
+/* ---------- Flight detail ---------- */
 
-export function ReviewPage({ updates, mode, switchState, busy, go, onPublish, onReject, onToggleSwitch }) {
+/** Large, colour-coded action tile — the main way to act on a flight. */
+function ActionTile({ tone, icon: Icon, title, sub, onClick, disabled, pulse }) {
+  const Tag = onClick ? 'button' : 'div';
+  return <Tag className={`action-tile ${tone}${pulse ? ' pulse' : ''}`} onClick={onClick} disabled={disabled}>
+    <Icon size={26} /><span><strong>{t(title)}</strong>{sub && <small>{t(sub)}</small>}</span>
+  </Tag>;
+}
+
+function ItemTile({ item }) {
+  const tone = answerTone(item);
+  return <div className={`item-tile ${tone}`}>
+    <span className="it-label">{itemLabel(item)}{item.kind === 'custom' && <em>{t("Custom")}</em>}</span>
+    <strong>{itemAnswer(item) || t('No answer yet')}</strong>
+    {item.note && <small>{item.note}</small>}
+    {item.previous !== undefined && item.previous !== null && <small className="was">{t("was ")}{itemAnswer(item, item.previous)}</small>}
+  </div>;
+}
+
+function OrderView({ order }) {
   return <>
-    <Hero title="Passenger updates" value={updates.length} sub={updates.length ? 'waiting for review' : 'Nothing to review'} line={mode === 'cs' ? 'Check each message, edit if needed, then publish it to the passenger page.' : 'Customer service reviews these before passengers see them.'}>
-      {mode === 'occ' && <div className="hero-actions"><button className="button glass" onClick={onToggleSwitch}>{switchState.active ? <Play size={15}/> : <Pause size={15}/>}{switchState.active ? 'Resume publishing' : 'Pause publishing'}</button></div>}
-    </Hero>
-    {switchState.active && <div className="banner warn"><Pause size={16}/>Publishing is paused by Operations. Drafts can be edited, but nothing can be published until it resumes.</div>}
-    <div className="grid">
-      {updates.map(u => <ReviewCard key={u.id} update={u} canReview={mode === 'cs'} paused={switchState.active} busy={busy} onCase={() => go({ page: 'case', id: u.case_id })} onPublish={text => onPublish(u, text)} onReject={() => onReject(u)}/>)}
-      {!updates.length && <Widget span={6} icon={CheckCheck} label="Review queue"><Empty title="Every update has a decision" text="New drafts appear here automatically." icon={CheckCheck}/></Widget>}
+    <div className="wo-meta">
+      <span><small>{t("Proposed")}</small><b>{order.proposed_departure ? t("{0} HKT", { 0: timeOf(order.proposed_departure) }) : '—'}</b></span>
+      <span><small>{t("Sent")}</small><b>{relative(order.sent_at)}</b></span>
+      {order.responded_at && <span><small>{t("Reply")}</small><b>{relative(order.responded_at)}</b></span>}
     </div>
+    {order.note && <p className="wo-note"><b>{t("OCC")}</b>{t(order.note)}</p>}
+    <div className="item-grid">{order.items.map((i) => <ItemTile key={i.key} item={i} />)}</div>
+    {order.response_note && <p className="wo-note"><b>{t("Station")}</b>{order.response_note}</p>}
+    {order.decision_note && <p className="wo-note"><b>{t("Decision")}</b>{order.decision_note}</p>}
   </>;
 }
 
-export function ReviewCard({ update, canReview, paused, busy, onPublish, onReject, onCase, span = 3 }) {
-  const [text, setText] = useState(update.draft_text);
-  return <Widget span={span} icon={Send} label={`${titleTopic(update.topic)} · draft`} aside={onCase && <button className="w-link" onClick={onCase}>Open case<ArrowUpRight size={12}/></button>} className="review-widget">
-    <h3 className="rv-title">{update.flight_no || `Case ${update.case_id}`} <span>{update.station} → HKG</span></h3>
-    {canReview
-      ? <textarea className="rv-text" aria-label={`Passenger message for ${update.flight_no || update.case_id}`} rows={3} maxLength={3000} value={text} onChange={e => setText(e.target.value)}/>
-      : <p className="rv-draft">{update.draft_text}</p>}
-    <div className="rv-foot">
-      {canReview
-        ? <><button className="button glass small" disabled={busy} onClick={onReject}><X size={14}/>Reject</button><button className="button primary small" disabled={busy || paused || !text.trim()} onClick={() => onPublish(text.trim())}><Send size={14}/>{paused ? 'Publishing paused' : 'Publish'}</button></>
-        : <span className="muted">Waiting for customer service</span>}
-    </div>
+/** Station reply: one tap per item, optional note, and fully custom items. */
+function ReplyForm({ order, busy, onSubmit }) {
+  const [items, setItems] = useState(() => order.items.map(({ previous, ...i }) => ({ ...i, status: order.status === 'RESPONDED' ? i.status : null })));
+  const [note, setNote] = useState(order.response_note || '');
+  const [draft, setDraft] = useState(null);
+  const set = (key, patch) => setItems(items.map((i) => i.key === key ? { ...i, ...patch } : i));
+  const previous = Object.fromEntries(order.items.map((i) => [i.key, i.previous]));
+  const options = draft ? (draft.options.trim()||'Ready,Pending,Unavailable').split(',').map((o) => o.trim()).filter(Boolean) : [];
+  const validCustom = draft && options.length >= 2 && options.length <= 6 && new Set(options).size === options.length && options.every((o) => o.length <= 30);
+  const addCustom = () => {
+    const n = 1 + Math.max(0, ...items.filter((i) => i.kind === 'custom').map((i) => Number(i.key.split('-')[1]) || 0));
+    setItems([...items, { key: `custom-${n}`, label: draft.label.trim()||t('Custom item'), kind: 'custom', options: [...new Set(options)].slice(0, 6), status: null, note: '' }]);
+    setDraft(null);
+  };
+  const missing = items.filter((i) => !i.status).length;
+  return <form className="reply" onSubmit={(e) => {e.preventDefault();onSubmit({ version: order.version, items, note });}}>
+    {order.note && <p className="wo-note"><b>{t("OCC")}</b>{t(order.note)}</p>}
+    {items.map((i) => <div key={i.key} className={`reply-row ${answerTone(i)}`}>
+      <div className="rr-head">
+        <strong>{itemLabel(i)}{i.kind === 'custom' && <em>{t("Custom")}</em>}</strong>
+        {previous[i.key] && <small className="was">{t("was ")}{itemAnswer(i, previous[i.key])}</small>}
+        {i.kind === 'custom' && <button type="button" className="icon-button" aria-label={t("Remove {0}", { 0: itemLabel(i) })} onClick={() => setItems(items.filter((x) => x.key !== i.key))}><Trash2 size={16} /></button>}
+      </div>
+      <div className="opt-row" role="radiogroup" aria-label={itemLabel(i)}>{i.options.map((o, idx) => <button type="button" key={o} role="radio" aria-checked={i.status === o}
+        className={'opt ' + (i.kind === 'preset' ? ['good', 'warn', 'bad'][idx] : 'neutral') + (i.status === o ? ' on' : '')} onClick={() => set(i.key, { status: o })}>{itemAnswer(i, o)}</button>)}</div>
+      <input className="rr-note" aria-label={t("{0} note", { 0: itemLabel(i) })} value={i.note} maxLength={240} placeholder={i.key === 'gate' ? t('Gate number') : i.key === 'counter' ? t('Counter numbers') : t('Note (optional)')} onChange={(e) => set(i.key, { note: e.target.value })} />
+    </div>)}
+    {draft ? <div className="custom-add">
+      <input autoFocus aria-label={t('Custom item name')} value={draft.label} maxLength={60} placeholder={t("Item name, e.g. De-icing")} onChange={(e) => setDraft({ ...draft, label: e.target.value })} />
+      <input aria-label={t('Custom item choices')} value={draft.options} maxLength={200} placeholder={t("Choices, comma separated: Booked, Waiting, Not needed")} onChange={(e) => setDraft({ ...draft, options: e.target.value })} />
+      <p className="form-hint">{t("2–6 unique choices, up to 30 characters each.")}</p>
+      <div className="button-row"><button type="button" className="button glass small" onClick={() => setDraft(null)}><X size={14} />{t("Cancel")}</button><button type="button" className="button primary small" disabled={!validCustom} onClick={addCustom}><Plus size={14} />{t("Add item")}</button></div>
+    </div> : <button type="button" className="add-custom" disabled={items.length >= 20} onClick={() => setDraft({ label: '', options: '' })}><Plus size={16} />{t("Add custom item")}</button>}
+    <label className="reply-note">{t("Message to OCC")}<textarea rows={2} value={note} maxLength={1000} onChange={(e) => setNote(e.target.value)} placeholder={t("Optional")} /></label>
+    <button className="button primary big" disabled={busy || missing > 0}><Send size={18} />{missing ? t("Answer {0} more", { 0: missing }) : order.status === 'RESPONDED' ? t('Update reply to OCC') : t('Send to OCC')}</button>
+  </form>;
+}
+
+function FilesWidget({ files, busy, onUpload, onDownload,readOnly=false }) {
+  const input = useRef(null);
+  const [over, setOver] = useState(false);
+  return <Widget span={2} icon={Paperclip} label={t("Files · {0}", { 0: files.length })} className="files">
+    <button type="button" className={'drop' + (over ? ' over' : '')} disabled={busy||readOnly} onClick={() => input.current?.click()}
+    onDragOver={(e) => {e.preventDefault();setOver(true);}} onDragLeave={() => setOver(false)}
+    onDrop={(e) => {e.preventDefault();setOver(false);if (!readOnly && e.dataTransfer.files.length) onUpload(e.dataTransfer.files);}}>
+      <Upload size={20} /><span>{t("Add Word, PDF…")}</span>
+    </button>
+    <input ref={input} type="file" multiple hidden accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.png,.jpg,.jpeg" onChange={(e) => {if (e.target.files.length) onUpload(e.target.files);e.target.value = '';}} />
+    <ul className="file-list">{files.map((f) => <li key={f.id}><button onClick={() => onDownload(f)} title={t("Download")}>
+      <FileText size={18} /><span><b>{f.name}</b><small>{f.uploaded_role === 'occ' ? t('OCC') : t('Station')} · {Math.max(1, Math.round(f.size / 1024))}{t(" KB · ")}{relative(f.created_at)}</small></span><Download size={15} />
+    </button></li>)}</ul>
   </Widget>;
 }
 
-/* ---------- Case detail ---------- */
-
-const STATUS_WORD = { CONFIRMED: 'Confirmed', PENDING: 'Waiting', UNAVAILABLE: 'Unavailable' };
-const ACTOR = { occ: 'Operations', outport: 'Station', cs: 'Customer service', system: 'System' };
-
-export function CasePage({ detail, stations, mode, busy, switchState, actions }) {
+export function CasePage({ detail, stations, mode, busy, actions,token,onChanged }) {
+  const [viewing, setViewing] = useState(null);
   const [allEvents, setAllEvents] = useState(false);
-  const [showInternal, setShowInternal] = useState(false);
-  const ready = countReady(detail);
+  const orders = detail.work_orders;
+  const wo = orders[0];
+  const shown = orders.find((o) => o.id === viewing) || wo;
   const open = detail.status === 'OPEN';
-  const pending = detail.updates.filter(u => u.status === 'PENDING');
-  const published = detail.updates.filter(u => u.status === 'PUBLISHED');
-  const internal = detail.updates.filter(u => !['PENDING', 'PUBLISHED'].includes(u.status));
-  const blocked = CONDITION_META.some(m => detail.conditions[m.key].status === 'UNAVAILABLE');
-  const proposed = detail.proposed_departure;
-  const { gates, counters } = detail.readiness;
-  const step = nextStep(detail);
+  const active = wo && ACTIVE_WO.includes(wo.status);
+  const fs = FLIGHT_STATUS[detail.flight_status] || FLIGHT_STATUS.DISRUPTED;
+  const time = detail.public_departure || wo?.proposed_departure || detail.proposed_departure || detail.original_departure;
+  const timeLabel = detail.flight_status === 'CANCELLED' ? t('Cancelled') : detail.flight_status === 'DELAYED' && !detail.public_departure ? t('Time pending') : null;
+  const gaps = wo ? notReady(wo.items).length : 0;
+  const stationName = stations.find((s) => s.code === detail.station)?.name;
+  const editable = open && mode === 'outport' && shown?.id === wo?.id && ['RECEIVED', 'RESPONDED'].includes(wo?.status);
 
-  // Three-step progress. The first unfinished step is "current".
-  const steps = [
-    { title: 'Station acknowledges', done: detail.acknowledged, detail: detail.acknowledged ? 'Acknowledged' : `Waiting for ${detail.station}`,
-      action: mode === 'outport' && open && !detail.acknowledged && <button className="button primary small" disabled={busy} onClick={actions.acknowledge}><Check size={14}/>Acknowledge</button> },
-    { title: 'Ground resources ready', done: ready === 5, warn: blocked, detail: blocked ? 'Something is unavailable' : `${ready} of 5 confirmed`,
-      action: mode === 'outport' && open && detail.acknowledged && ready < 5 && <button className="button primary small" onClick={actions.readiness}>Update resources</button> },
-    { title: 'Passengers informed', done: !pending.length && published.length > 0, detail: pending.length ? `${plural(pending.length, 'update')} to review${switchState.active ? ' · publishing paused' : ''}` : `${published.length} published` }
-  ];
-  const current = open ? steps.findIndex(s => !s.done) : -1;
+  const tiles = [];
+  if (mode === 'occ' && open) {
+    if (!active) tiles.push(<ActionTile key="new" tone="brand" icon={FilePlus2} title={t("Create work order v{0}", { 0: (wo?.number || 0) + 1 })} sub={t("Send to {0}", { 0: detail.station })} onClick={actions.createWO} />);
+    if (wo?.status === 'RESPONDED') {
+      tiles.push(<ActionTile key="auth" tone={gaps ? 'wait' : 'good'} icon={ShieldCheck} title={t("Authorise & publish")} sub={gaps ? t("{0} not ready · Reissue first", { 0: gaps }) : t('All ready')} disabled={busy || gaps>0} onClick={() => actions.authorize(wo)} />);
+      tiles.push(<ActionTile key="re" tone="warn" icon={RotateCw} title={t("Reissue as v{0}", { 0: wo.number + 1 })} sub={t("Ask again")} onClick={() => actions.reissue(wo)} />);
+    }
+    if (active && wo.status !== 'RESPONDED') tiles.push(<ActionTile key="wait" tone="wait" icon={Hourglass} title={t("Waiting for {0}", { 0: detail.station })} sub={t("v{0} {1} · {2}", { 0: wo.number, 1: t(WO_STATUS[wo.status].label), 2: relative(wo.received_at || wo.sent_at) })} />);
+    if (active) tiles.push(<ActionTile key="stop" tone="danger" icon={CircleStop} title={t("Stop v{0}", { 0: wo.number })} onClick={() => actions.abort(wo)} />);
+    tiles.push(<ActionTile key="cancel" tone="danger" icon={XCircle} title={t("Cancel flight")} onClick={actions.cancel} />);
+  }
+  if (open && mode === 'outport' && wo?.status === 'SENT') tiles.push(<ActionTile key="rx" tone="warn" icon={BellRing} title={t("Receive work order v{0}", { 0: wo.number })} sub={t("New from OCC")} pulse disabled={busy} onClick={() => actions.receive(wo)} />);
 
   return <>
-    <Hero title={detail.flight_no} value={timeOf(proposed || detail.original_departure)}
-      sub={<span className="hero-meta">{detail.station} → {detail.destination} · {dateOf(detail.flight_date + 'T12:00:00Z')}{proposed && <> · <s>{timeOf(detail.original_departure)}</s> originally</>}</span>}
-      line={<NextStep c={detail}/>}>
-      <div className="hero-actions">
-        {mode === 'occ' && open && <button className="button glass" onClick={actions.schedule}><CalendarClock size={15}/>Propose new time</button>}
-        {['occ', 'outport'].includes(mode) && open && <button className="button glass" onClick={actions.note}><Plus size={15}/>Add note</button>}
-        {mode !== 'outport' && <button className="button glass" disabled={busy} onClick={actions.passenger}><Smartphone size={15}/>Passenger view</button>}
-        {mode === 'occ' && open && step.owner === 'done' && <button className="button primary" onClick={actions.close}><Check size={15}/>Close case</button>}
-        {mode === 'occ' && open && step.owner !== 'done' && <button className="button glass" onClick={actions.close}><Check size={15}/>Close case</button>}
-      </div>
-      {mode === 'occ' && <a className="hero-link" href={`/outport?station=${detail.station}&case=${detail.id}`} target="_blank" rel="noreferrer">Open this case as {detail.station} station<ArrowUpRight size={12}/></a>}
+    <Hero title={detail.flight_no} value={timeLabel ? <span className="time-label">{timeLabel}</span> : timeOf(time)}
+    sub={<span className="hero-meta"><Pill tone={fs.tone}>{t(fs.label)}</Pill>{detail.origin||detail.station} → {detail.destination} · {dateOf(detail.flight_date + 'T12:00:00Z')}{!timeLabel && time !== detail.original_departure && <> · <s>{timeOf(detail.original_departure)}</s></>}</span>}
+    line={<NextStep c={detail} />}>
+      {mode === 'occ' && <div className="hero-actions"><a className="button glass" href={passengerPreviewPath(detail.id)} target="_blank" rel="noreferrer"><Smartphone size={15}/>{t("Passenger view")}</a></div>}
     </Hero>
 
     <div className="grid">
-      <Widget span={6} icon={Workflow} label="Progress">
-        <ol className="progress">{steps.map((s, i) => <li key={s.title} className={(s.done ? 'done' : '') + (i === current ? ' current' : '') + (s.warn ? ' warn' : '')}>
-          <span className="p-node">{s.done ? <Check size={14}/> : i + 1}</span>
-          <div><strong>{s.title}</strong><small>{s.detail}</small>{i === current && s.action}</div>
-        </li>)}</ol>
+      {tiles.length > 0 && <div className="action-row s6">{tiles}</div>}
+
+      <Widget span={4} rows={2} icon={ListChecks} label={t('Work order')} className="wo"
+      aside={shown && <span className="wo-aside">{orders.length > 1 && <span className="vtabs">{[...orders].reverse().map((o) => <button key={o.id} className={o.id === shown.id ? 'on' : ''} onClick={() => setViewing(o.id)}>{t('Version {0}', {0: o.number})}</button>)}</span>}<OrderStatus order={shown}/></span>}>
+        {!shown ? <Empty title={t("No work order yet")} text={mode === 'occ' ? t('Create one to ask the station for confirmation.') : t('OCC has not sent a work order.')} icon={ListChecks} /> :
+        editable ? <ReplyForm key={wo.id + ':' + wo.version} order={wo} busy={busy} onSubmit={(body) => actions.respond(wo, body)} /> :
+        <OrderView order={shown} />}
       </Widget>
 
-      <Widget span={6} icon={ListChecks} label={`Ground resources at ${detail.station} · ${ready} of 5 confirmed`} aside={mode === 'outport' && open && <button className="w-link" onClick={actions.readiness}>Update<ChevronRight size={13}/></button>}>
-        <div className="cond-cols">{CONDITION_META.map(({ key, short, icon: Icon }) => {
-          const c = detail.conditions[key];
-          const loc = key === 'gate' ? gates : key === 'counter' ? counters : [];
-          return <div key={key} className={'cond ' + c.status.toLowerCase()} title={c.note || undefined}>
-            <Icon size={22}/>
-            <span className="cond-name">{short}</span>
-            <span className="cond-status">{STATUS_WORD[c.status] || c.status}</span>
-            {(loc.length > 0 || c.note) && <small>{loc.join(', ') || c.note}</small>}
-          </div>;
-        })}</div>
-        {detail.readiness.note && <p className="w-foot">Station note: {detail.readiness.note}</p>}
+      <FilesWidget readOnly={mode==='care'} files={detail.files} busy={busy} onUpload={(list) => actions.upload(list, wo?.id)} onDownload={actions.download} />
+
+      <Widget span={2} icon={Plane} label={t("Flight")}>
+        <dl className="facts">
+          <div><dt>{t("Route")}</dt><dd>{detail.origin||detail.station}{detail.origin!=='HKG'&&stationName ? ` ${t(stationName)}` : ''} → {detail.destination}</dd></div>
+          <div><dt>{t("Aircraft")}</dt><dd>{detail.aircraft || '—'}</dd></div>
+          <div><dt>{t("Scheduled")}</dt><dd>{timeOf(detail.original_departure)}</dd></div>
+          {detail.public_departure && <div><dt>{t("Published")}</dt><dd>{timeOf(detail.public_departure)}{detail.public_gate ? t(" · Gate {0}", { 0: detail.public_gate }) : ''}</dd></div>}
+        </dl>
       </Widget>
 
-      {pending.map(u => <ReviewCard key={u.id} span={pending.length === 1 ? 6 : 3} update={{ ...u, flight_no: detail.flight_no, station: detail.station }} canReview={mode === 'cs'} paused={switchState.active} busy={busy} onPublish={text => actions.publish(u, text)} onReject={() => actions.reject(u)}/>)}
-
-      <Widget span={6} icon={Smartphone} label="What passengers see" aside={internal.length > 0 && <button className="w-link" onClick={() => setShowInternal(!showInternal)}>{showInternal ? 'Hide' : 'Show'} {plural(internal.length, 'internal record')}</button>}>
-        {published.length
-          ? <ol className="msgs">{published.map(u => <li key={u.id} className={u.invalidated_at ? 'stale' : ''}>
-              <span className="msg-topic">{titleTopic(u.topic)}</span>
-              <p>{u.final_text || u.draft_text}</p>
-              <small>{timeOf(u.published_at)} HKT{u.invalidated_at ? ' · no longer current' : ''}</small>
-            </li>)}</ol>
-          : <p className="muted">Nothing published yet.</p>}
-        {showInternal && <ol className="msgs internal">{internal.map(u => <li key={u.id}>
-          <span className="msg-topic">{titleTopic(u.topic)} · {humanize(u.status)}</span>
-          <p>{u.final_text || u.draft_text}</p>
-          <small>Never shown to passengers</small>
-        </li>)}</ol>}
-      </Widget>
-
-      <Widget span={6} icon={Activity} label="History" aside={detail.events.length > 5 && <button className="w-link" onClick={() => setAllEvents(!allEvents)}>{allEvents ? 'Show less' : `Show all ${detail.events.length}`}</button>}>
-        <ol className="timeline">{(allEvents ? detail.events : detail.events.slice(0, 5)).map(e => <li key={e.id} className={e.type === 'UPDATE_PUBLISHED' ? 'good' : ''}>
-          <strong>{e.payload.summary || humanize(e.type)}{e.payload.snapshot && <span className="v">V{e.payload.snapshot.version}</span>}</strong>
-          <small>{ACTOR[e.actor_role] || humanize(e.actor_role)} ·{relative(e.created_at)}{e.type === 'NOTE_ADDED' ? ' · internal note' : ''}</small>
+      <CaseWorkspace record={detail} role={mode} token={token} onChanged={onChanged} onEditNotice={actions.editPassengerNotice}/>
+      <Widget span={6} icon={Activity} label={t("History")} aside={detail.events.length > 6 && <button className="w-link" onClick={() => setAllEvents(!allEvents)}>{allEvents ? t('Show less') : t("All {0}", { 0: detail.events.length })}</button>}>
+        <ol className="timeline event-timeline">{(allEvents ? detail.events : detail.events.slice(0, 6)).map((e) => <li key={e.id} className={['UPDATE_PUBLISHED', 'WORK_ORDER_AUTHORIZED','PASSENGER_NOTICE_PUBLISHED'].includes(e.type) ? 'good' : ['WORK_ORDER_ABORTED', 'FLIGHT_CANCELLED'].includes(e.type) ? 'bad' : ''}>
+          <strong>{eventText(e)}</strong>
+          <small>{t({ occ: 'OCC', outport: 'Station', cs: 'Customer service', care:'Customer Care', system: 'System' }[e.actor_role] || e.actor_role)} · {relative(e.created_at)}</small>
+          {['outport','care'].includes(mode) && <div className="event-notice-actions">{publishedNoticeForEvent(detail,e)&&<Pill tone="good">{t('Notice published')}</Pill>}<button className="button glass small" disabled={busy} onClick={()=>actions.editPassengerNotice(e)}><PencilLine size={14}/>{t(publishedNoticeForEvent(detail,e)?'Edit another notice':'Edit passenger notice')}</button></div>}
         </li>)}</ol>
       </Widget>
     </div>
